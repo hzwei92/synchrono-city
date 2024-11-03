@@ -13,7 +13,7 @@
           :on-change #(re-frame/dispatch [:set-post-content (-> % .-target .-value)])
           :placeholder (str "Write one good sentence.\n"
                             "Then write another.\n"
-                            "Don't spend time re-explaining to yourself.\n"
+                            "Don't spend time re-explaining what you already know.\n"
                             "You are your first audience.\n"
                             "What is useful to you in this very moment?\n"
                             "What do you feel?")}]

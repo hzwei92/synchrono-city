@@ -35,7 +35,7 @@
              [:button.content-button
               {:on-click #(-> js/navigator.clipboard (.writeText (:public-key keypair)))}
               "Copy"]])]
-         [:div.keys-row
+         [:div.row
           [:span "Private Key: "]
           (if (and @current-keypair-private-key (= (:name keypair) @current-keypair-name))
             [:span
@@ -48,12 +48,12 @@
               [:span.faint "(locked)"]
               [:span.faint "(empty)"]))]
          (if (and @current-keypair-private-key (= (:name keypair) @current-keypair-name))
-           [:div.keys-row
+           [:div.row
             [:button.action-button {:on-click #(re-frame/dispatch [:lock-keys])}
              "Lock"]]
            (if (= (:name keypair) @unlocking-keypair-name)
              [:div
-              [:div.keys-row
+              [:div.row
                [:input {:type (if @show-password? "text" "password")
                         :value @password
                         :placeholder "password"
@@ -61,19 +61,19 @@
                         :autoComplete "off"}]
                [:button.content-button {:on-click #(re-frame/dispatch [:toggle-show-password])}
                 (if @show-password? "Hide" "Show")]]
-              [:div.keys-row
+              [:div.row
                [:div.error @error]]
-              [:div.keys-row
+              [:div.row
                [:button.action-button {:on-click #(re-frame/dispatch [:unlock-keys])}
                 "Unlock"]
                [:button.content-button {:on-click #(re-frame/dispatch [:set-unlocking-keypair-name nil])}
                 "Cancel"]]]
-             [:div.keys-row
+             [:div.row
               [:button.action-button {:on-click #(re-frame/dispatch [:set-unlocking-keypair-name (:name keypair)])}
                "Unlock"]]))
          (if @clearing-keypair-name
-           [:div.keys-row
-            [:div.keys-row "Are you sure you want to clear this keypair? "]
+           [:div.row
+            [:div.row "Are you sure you want to clear this keypair? "]
             [:button.danger-button {:on-click #(re-frame/dispatch [:clear-keypair])} "Clear"]
             [:button.content-button {:on-click #(re-frame/dispatch [:set-clearing-keypair-name nil])} "Cancel"]]
            [:button.danger-button {:on-click #(re-frame/dispatch [:set-clearing-keypair-name (:name keypair)])}
@@ -87,13 +87,13 @@
         show-confirm-password? (re-frame/subscribe [:show-confirm-password?])
         error (re-frame/subscribe [:error])]
     [:div.keys-generator
-     [:div.keys-row
+     [:div.row
       [:input {:type "text"
                :value @name
                :placeholder "name"
                :on-change #(re-frame/dispatch [:set-name (-> % .-target .-value)])
                :autoComplete "off"}]]
-     [:div.keys-row
+     [:div.row
       [:input {:type (if @show-password? "text" "password")
                :value @password
                :placeholder "password"
@@ -101,7 +101,7 @@
                :autoComplete "off"}]
       [:button.content-button {:on-click #(re-frame/dispatch [:toggle-show-password])}
        (if @show-password? "Hide" "Show")]]
-     [:div.keys-row
+     [:div.row
       [:input {:type (if @show-confirm-password? "text" "password")
                :value @confirm-password
                :placeholder "confirm password"
@@ -109,7 +109,7 @@
                :autoComplete "off"}]
       [:button.content-button {:on-click #(re-frame/dispatch [:toggle-show-confirm-password])}
        (if @show-confirm-password? "Hide" "Show")]]
-     [:div.keys-row
+     [:div.row
       [:div.error @error]]
      [:button.action-button {:on-click #(re-frame/dispatch [:generate-keys])}
       "Generate"]
@@ -126,13 +126,13 @@
         private-key (re-frame/subscribe [:private-key])
         error (re-frame/subscribe [:error])]
     [:div.keys-importer
-     [:div.keys-row
+     [:div.row
       [:input {:type "text"
                :value @name
                :placeholder "name"
                :on-change #(re-frame/dispatch [:set-name (-> % .-target .-value)])
                :autoComplete "off"}]]
-     [:div.keys-row
+     [:div.row
       [:input {:type (if @show-password? "text" "password")
                :value @password
                :placeholder "password"
@@ -140,7 +140,7 @@
                :autoComplete "off"}]
       [:button.content-button {:on-click #(re-frame/dispatch [:toggle-show-password])}
        (if @show-password? "Hide" "Show")]]
-     [:div.keys-row
+     [:div.row
       [:input {:type (if @show-confirm-password? "text" "password")
                :value @confirm-password
                :placeholder "confirm password"
@@ -148,19 +148,19 @@
                :autoComplete "off"}]
       [:button.content-button {:on-click #(re-frame/dispatch [:toggle-show-confirm-password])}
        (if @show-confirm-password? "Hide" "Show")]]
-     [:div.keys-row
+     [:div.row
       [:input {:type "text"
                :value @public-key
                :placeholder "public key"
                :on-change #(re-frame/dispatch [:set-public-key (-> % .-target .-value)])
                :autoComplete "off"}]]
-     [:div.keys-row
+     [:div.row
       [:input {:type "text"
                :value @private-key
                :placeholder "private key"
                :on-change #(re-frame/dispatch [:set-private-key (-> % .-target .-value)])
                :autoComplete "off"}]]
-     [:div.keys-row
+     [:div.row
       [:div.error @error]]
      [:button.action-button {:on-click #(re-frame/dispatch [:import-keys])} "Import"]
      [:button.content-button {:on-click #(re-frame/dispatch [:set-importing-keypair? false])}
@@ -173,13 +173,13 @@
     [:div.keys
      [:div.title "keys"]
      [:div "When it's locked with A, then B unlocks."]
-     [:div.keys-row "When it's locked with B, then A unlocks."]
-     [:div.keys-row "Given such a keypair, keep one private and share the other publicly."]
+     [:div.row "When it's locked with B, then A unlocks."]
+     [:div.row "Given such a keypair, keep one private and share the other publicly."]
      [:div "Use the public key as your name."]
-     [:div.keys-row "Use the private key to decrypt secrets and sign messages associated with that name."]
+     [:div.row "Use the private key to decrypt secrets and sign messages associated with that name."]
      [keypairs-list]
      [:div.new-keypair
-      [:div.keys-row (str (cond
+      [:div.row (str (cond
                             @generating-keypair? "Generate a new keypair"
                             @importing-keypair? "Import a keypair"
                             :else "New keypair"))]
@@ -187,9 +187,9 @@
         @generating-keypair? [keypair-generator]
         @importing-keypair? [keypair-importer]
         :else [:div
-               [:div.keys-row
+               [:div.row
                 [:button.action-button {:on-click #(re-frame/dispatch [:set-generating-keypair? true])} "Generate"]]
-               [:div.keys-row
+               [:div.row
                 [:button.action-button {:on-click #(re-frame/dispatch [:set-importing-keypair? true])} "Import"]]])]]))
 
 ;; ======================

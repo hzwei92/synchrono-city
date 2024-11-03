@@ -33,7 +33,10 @@
    :clearing-keypair-name nil
    :unlocking-keypair-name nil
    :generating-keypair? false
-   :importing-keypair? false})
+   :importing-keypair? false
+   :identification {:captcha-required false 
+                    :email-required false
+                    :mobile-required false}})
 
 ;; Relay configurations
 (def default-relays-db
@@ -41,17 +44,19 @@
                   :api-url "https://synchrono.city"
                   :api-key ""
                   :name "synchrono.city"
-                  :description "open source nostr relay"
-                  :initial_balance_sat 10000    ; Initial balance in satoshis
-                  :minimum_balance_sat 70      ; Minimum required balance
-                  :daily_usage_price_sat 10    ; Daily cost in satoshis
-                  :balance 0
-                  :active? false
-                  :captcha_required false
-                  :email_required false
-                  :mobile_required false
+                  :description (str "Everyone buys in for 10,000 credits. "
+                                    "Every upvote transfers 1 credit. "
+                                    "Upvote as much as you want. "
+                                    "Also, we tax you 10 credits per day. "
+                                    "That means you better start hustling, haha! "
+                                    "Cash out by withdrawing credits. "
+                                    "Win big in this marketplace for ideas.")
+                  :initial-credit-balance-sat 10000    ; Initial balance in satoshis
+                  :minimum-withdrawal-sat 70      ; Minimum required balance
+                  :daily-fee-sat 10    ; Daily cost in satoshis
+                  :curent-credit-balance-sat 0
                   :timezone "UTC-08:00"
-                  :post-ids-by-date {}         ; Maps dates to lists of post IDs
+                  :post-id-lists []
                   :posts-by-id {}}]
    :current-relay-api-url "https://synchrono.city"})
 

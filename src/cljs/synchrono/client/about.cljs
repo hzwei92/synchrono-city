@@ -3,19 +3,21 @@
 (defn about []
   [:div.about
    [:div.title "about"]
-   [:p "Friday, November 1st, 2024"]
-   [:p "On that daily journal club grind."]
-   [:p "Here is the standard deal:"]
-   [:ol
-    [:li "Daily writings are batched, published all at once every midnight."]
-    [:li "Read for free, no subscription required."]
-    [:li "Purchase 10,000 satoshis (about $7) worth of credit to start engaging with the community. "]
-    [:li "Publishing nostr events here will cost 10 satoshis per day."]
-    [:li "Feel free to upvote outstanding posts using your satoshis as well."]
-    [:li "The most upvoted post of each day wins a prize, 20 satoshis."]
-    [:li "Withdraw your satoshis anytime."]
-    [:li "You cannot withdraw beyond a minimum balance of 70 satoshis."]]
-   [:p "To help you build a routine, and maybe make a few friends."]
-   [:p "It's like the gym, but for your reading and writing."]
-   [:p "Thank you for your support."]
-   [:p "~ synchrono.org"]])
+
+   [:p (str "It's like going to the gym to train reading and writing. "
+            "")]
+   [:p (str "We publish everyone's writing every 24 hours. "
+            "It's a simultaneous-reveal game-mechanic, like in the board game called Diplomacy. ")]
+   [:p (str "It gives a daily rhythm. "
+            "You can read through the day's content, and then set it aside, "
+            "getting on with the rest of your day. ")]
+   [:p (str "We function as a kind of lightning channel, for micropayments in BTC. "
+            "Pay people by upvoting their content. ")]
+   [:p (str "Regarding data storage, many a client will store all its data to some single centralized server. "
+            "However, a nostr client stores its data to multiple relays simultaneously. "
+            "This way, if one relay goes down, your data may still be accessible via the others. ")]
+   [:p (str "There are three roles to play here. "
+            "You can read and write. "
+            "You can even host your own relay. "
+            "It would be like running your own newpaper, your own version of Twitter/X. ")]
+   [:p "Sunday, November 3, 2024."]])
