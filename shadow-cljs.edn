@@ -4,6 +4,13 @@
  
  :dev-http {8280 "resources/public"}
  
+ :npm-deps {"aes-js" "latest"
+            "@noble/hashes" "latest"
+            "@noble/ciphers" "latest"
+            "nostr-tools" "latest"
+            "react" "18.3.1"
+            "react-dom" "18.3.1"}
+ 
  :builds
  {:app {:target :browser
         :output-dir "resources/public/js"

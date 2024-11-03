@@ -1,5 +1,5 @@
 (defproject synchrono "0.1.0"
-  :description "daily journaling club via nostr"
+  :description "daily journaling club, via nostr"
   :url "https://synchrono.city"
   :license {:name "MIT"
             :url "https://opensource.org/licenses/MIT"}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["synchrono/client/read.cljs"],"mappings":";AAGA,6BAAA,7BAAMA;AAAN,AAAA,0FAAA,4DAAA,mFAAA,gEAAA,eAAA,mFAAA,mDAAA","names":["synchrono.client.read/read"],"sourcesContent":["(ns synchrono.client.read)\n\n\n(defn read []\n  [:div.read\n   [:div.title \"read\"]\n   [:div \"read\"]])"]}
