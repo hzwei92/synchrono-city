@@ -15,16 +15,18 @@
         password (re-frame/subscribe [:password])
         show-password? (re-frame/subscribe [:show-password?])
         error (re-frame/subscribe [:error])
-        clearing-keypair-name (re-frame/subscribe [:clearing-keypair-name])
+        removing-keypair-name (re-frame/subscribe [:removing-keypair-name])
         unlocking-keypair-name (re-frame/subscribe [:unlocking-keypair-name])]
-    [:div.keypairs-list
+    [:div {:class (when (empty? @keypairs) "no-keypairs")}
      (doall
       (for [keypair @keypairs]
         ^{:key (:name keypair)}
-        [:div.keypair {:class (when (= (:name keypair) @current-keypair-name) "selected")}
+        [:div.item {:class (when (= (:name keypair) @current-keypair-name) "selected")}
          [:div.keypair-name
           [:span "Name: "]
-          [:strong (:name keypair)]]
+          (if (= (:name keypair) @current-keypair-name)
+            [:span.success (:name keypair)]
+            [:span.faint (:name keypair)])]
          [:div
           [:span "Public Key: "]
           (if (empty? (:public-key keypair))
@@ -39,8 +41,7 @@
           [:span "Private Key: "]
           (if (and @current-keypair-private-key (= (:name keypair) @current-keypair-name))
             [:span
-             [:span (str (subs @current-keypair-private-key 0 4) "..."
-                         (subs @current-keypair-private-key (- (count @current-keypair-private-key) 4)))]
+             [:span "####...####"]
              [:button.content-button
               {:on-click #(-> js/navigator.clipboard (.writeText @current-keypair-private-key))}
               "Copy"]]
@@ -71,13 +72,13 @@
              [:div.row
               [:button.action-button {:on-click #(re-frame/dispatch [:set-unlocking-keypair-name (:name keypair)])}
                "Unlock"]]))
-         (if @clearing-keypair-name
+         (if (and @removing-keypair-name (= (:name keypair) @removing-keypair-name))
            [:div.row
-            [:div.row "Are you sure you want to clear this keypair? "]
-            [:button.danger-button {:on-click #(re-frame/dispatch [:clear-keypair])} "Clear"]
-            [:button.content-button {:on-click #(re-frame/dispatch [:set-clearing-keypair-name nil])} "Cancel"]]
-           [:button.danger-button {:on-click #(re-frame/dispatch [:set-clearing-keypair-name (:name keypair)])}
-            "Clear"])]))]))
+            [:div.row "Are you sure you want to remove this keypair? "]
+            [:button.danger-button {:on-click #(re-frame/dispatch [:remove-keypair])} "Remove"]
+            [:button.content-button {:on-click #(re-frame/dispatch [:set-removing-keypair-name nil])} "Cancel"]]
+           [:button.danger-button {:on-click #(re-frame/dispatch [:set-removing-keypair-name (:name keypair)])}
+            "Remove"])]))]))
 
 (defn keypair-generator []
   (let [name (re-frame/subscribe [:name])
@@ -171,14 +172,14 @@
   (let [generating-keypair? (re-frame/subscribe [:generating-keypair?])
         importing-keypair? (re-frame/subscribe [:importing-keypair?])]
     [:div.keys
-     [:div.title "keys"]
-     [:div "When it's locked with A, then B unlocks."]
-     [:div.row "When it's locked with B, then A unlocks."]
-     [:div.row "Given such a keypair, keep one private and share the other publicly."]
-     [:div "Use the public key as your name."]
-     [:div.row "Use the private key to decrypt secrets and sign messages associated with that name."]
+     [:div.title "keypairs"]
+     [:p "Say you have two keys, A and B."]
+     [:p "When a message is locked with A, then B can unlock it." [:br] "When a message is locked with B, then A can unlock it."]
+     [:p "Given such a keypair, keep one private and share the other publicly."]
+     [:p "Use the public key as your name."]
+     [:p "Use the private key to decrypt secrets and sign messages associated with that name."]
      [keypairs-list]
-     [:div.new-keypair
+     [:div
       [:div.row (str (cond
                             @generating-keypair? "Generate a new keypair"
                             @importing-keypair? "Import a keypair"
@@ -284,7 +285,7 @@
    (-> db
        (assoc-in [:keys :current-keypair-name] nil)
        (assoc-in [:keys :current-keypair-private-key] nil)
-       (assoc-in [:keys :clearing-keypair-name] nil))))
+       (assoc-in [:keys :removing-keypair-name] nil))))
 
 (re-frame/reg-event-db
  :unlock-keys
@@ -355,14 +356,14 @@
        (assoc-in [:keys :generating-keypair?] false)
        (assoc-in [:keys :importing-keypair?] false)
        (assoc-in [:keys :unlocking-keypair-name] keypair-name)
-       (assoc-in [:keys :clearing-keypair-name] nil)
+       (assoc-in [:keys :removing-keypair-name] nil)
        (assoc-in [:app :error] ""))))
 
 (re-frame/reg-event-db
- :set-clearing-keypair-name
+ :set-removing-keypair-name
  (fn [db [_ keypair-name]]
    (-> db
-       (assoc-in [:keys :clearing-keypair-name] keypair-name)
+       (assoc-in [:keys :removing-keypair-name] keypair-name)
        (assoc-in [:keys :unlocking-keypair-name] nil)
        (assoc-in [:keys :name] "")
        (assoc-in [:keys :password] "")
@@ -371,20 +372,20 @@
        (assoc-in [:app :error] ""))))
 
 (re-frame/reg-event-fx
- :clear-keypair
+ :remove-keypair
  (fn [{:keys [db]} _]
    (let [keypairs-list (get-in db [:keys :keypairs-list])
          current-keypair-name (get-in db [:keys :current-keypair-name])
          current-keypair-private-key (get-in db [:keys :current-keypair-private-key])
-         clearing-keypair-name (get-in db [:keys :clearing-keypair-name])
-         updated-keypairs-list (filter #(not= (:name %) clearing-keypair-name) keypairs-list)]
+         removing-keypair-name (get-in db [:keys :removing-keypair-name])
+         updated-keypairs-list (filter #(not= (:name %) removing-keypair-name) keypairs-list)]
      {:db (-> db
-              (assoc-in [:keys :clearing-keypair-name] nil)
+              (assoc-in [:keys :removing-keypair-name] nil)
               (assoc-in [:keys :keypairs-list] updated-keypairs-list)
-              (assoc-in [:keys :current-keypair-name] (if (= clearing-keypair-name current-keypair-name)
+              (assoc-in [:keys :current-keypair-name] (if (= removing-keypair-name current-keypair-name)
                                                         nil
                                                         current-keypair-name))
-              (assoc-in [:keys :current-keypair-private-key] (if (= clearing-keypair-name current-keypair-name)
+              (assoc-in [:keys :current-keypair-private-key] (if (= removing-keypair-name current-keypair-name)
                                                                nil
                                                                current-keypair-private-key)))
       :dispatch [:save-keys-to-local-storage]})))
@@ -401,7 +402,7 @@
        (assoc-in [:keys :generating-keypair?] generating-keypair?)
        (assoc-in [:keys :importing-keypair?] false)
        (assoc-in [:keys :unlocking-keypair-name] nil)
-       (assoc-in [:keys :clearing-keypair-name] nil)
+       (assoc-in [:keys :removing-keypair-name] nil)
        (assoc-in [:app :error] ""))))
 
 (re-frame/reg-event-db
@@ -416,7 +417,7 @@
        (assoc-in [:keys :importing-keypair?] importing-keypair?)
        (assoc-in [:keys :generating-keypair?] false)
        (assoc-in [:keys :unlocking-keypair-name] nil)
-       (assoc-in [:keys :clearing-keypair-name] nil)
+       (assoc-in [:keys :removing-keypair-name] nil)
        (assoc-in [:app :error] ""))))
 
 ;; ======================
@@ -481,9 +482,9 @@
    (get-in db [:keys :private-key])))
 
 (re-frame/reg-sub
- :clearing-keypair-name
+ :removing-keypair-name
  (fn [db]
-   (get-in db [:keys :clearing-keypair-name])))
+   (get-in db [:keys :removing-keypair-name])))
 
 (re-frame/reg-sub
  :unlocking-keypair-name
@@ -500,7 +501,3 @@
  (fn [db]
    (get-in db [:keys :importing-keypair?])))
 
-(re-frame/reg-sub
- :error
- (fn [db]
-   (get-in db [:app :error])))

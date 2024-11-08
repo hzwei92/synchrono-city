@@ -14,7 +14,7 @@
         [:button.header-button.error {:on-click #(re-frame/dispatch [:set-current-route :keys])}
          "No keys"]
         (if @current-keypair-private-key
-          [:button.header-button {:on-click #(re-frame/dispatch [:set-current-route :keys])}
+          [:button.header-button.success {:on-click #(re-frame/dispatch [:set-current-route :keys])}
            (:name @current-keypair)]
           [:button.header-button.error {:on-click #(re-frame/dispatch [:set-current-route :keys])}
            "Keys locked"]))]]))

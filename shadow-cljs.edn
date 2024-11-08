@@ -1,13 +1,15 @@
 {:source-paths ["src/cljs"]
  :dependencies [[reagent "1.2.0"]
-                [re-frame "1.4.2"]]
+                [re-frame "1.4.2"]
+                [cljs-ajax "0.8.4"]
+                [com.taoensso/timbre "6.5.0"]]
  
- :dev-http {8280 "resources/public"}
+ :dev-http {3001 "resources/public"}
  
  :npm-deps {"aes-js" "latest"
             "@noble/hashes" "latest"
             "@noble/ciphers" "latest"
-            "nostr-tools" "latest"
+            "nostr-tools" "2.10.1"
             "react" "18.3.1"
             "react-dom" "18.3.1"}
  
@@ -20,4 +22,4 @@
         :dev {:compiler-options
               {:closure-defines {}}}
         :release {:build-options
-                 {:ns-aliases {}}}}}}
+                 {:ns-aliases {}}}}}}s

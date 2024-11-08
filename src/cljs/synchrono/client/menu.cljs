@@ -6,8 +6,9 @@
     (when @menu-open?
       [:div.menu
        [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :about])} "about"]
-       [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :keys])} "keys"]
+       [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :keys])} "keypairs"]
        [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :relays])} "relays"]
+       [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :contracts])} "contracts"]
        [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :write])} "write"]
        [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :read])} "read"]])))
 
