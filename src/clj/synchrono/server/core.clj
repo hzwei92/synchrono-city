@@ -1,4 +1,5 @@
 (ns synchrono.server.core
+  (:gen-class)
   "Core server namespace for HTTP/WebSocket server and routing"
   (:require [taoensso.timbre :as log]
             [synchrono.server.logging :refer [configure-logging!]]
