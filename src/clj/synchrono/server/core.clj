@@ -11,7 +11,8 @@
             [synchrono.server.db :refer [init-db!]]
             [synchrono.server.ws :refer [ws-handler]]
             [synchrono.server.admin :refer [admin-routes]]
-            [synchrono.server.accounts :refer [accounts-routes]]))
+            [synchrono.server.accounts :refer [accounts-routes]]
+            [synchrono.server.lightning :as lightning]))
 
 ;; Configure logging first, before any other operations
 (configure-logging!)
@@ -50,6 +51,15 @@
 
 (defonce server (atom nil))
 
+(def lnd-client (atom nil))
+
+(defn init-lightning! []
+  (reset! lnd-client 
+          (lightning/create-lnd-client
+            {:host "your-vps-ip:10009"  ;; Replace with your LND node's IP/domain
+             :cert-path "./certs/tls.cert"  ;; Local path to copied cert
+             :macaroon-path "./certs/admin.macaroon"})))  ;; Local path to copied macaroon
+
 (defn start-server!
   "Starts HTTP server on specified port"
   [port]
@@ -71,5 +81,6 @@
   []
   (log/info "Initializing database")
   (init-db!)
+  (init-lightning!)
   (let [port (Integer/parseInt (or (System/getenv "PORT") "3000"))]
     (start-server! port)))

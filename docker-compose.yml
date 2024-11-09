@@ -1,0 +1,187 @@
+version: '3.8'
+services:
+  bitcoind:
+    image: ruimarinho/bitcoin-core:23.0
+    command:
+      -printtoconsole
+      -server=1
+      -rpcallowip=::/0
+      -rpcbind=0.0.0.0
+      -rpcauth=${BITCOIN_RPC_AUTH}
+      -zmqpubrawblock=tcp://0.0.0.0:28332
+      -zmqpubrawtx=tcp://0.0.0.0:28333
+      -prune=5000
+    volumes:
+      - bitcoin_data:/home/bitcoin/.bitcoin
+      - ./bitcoin-data/bitcoin.conf:/home/bitcoin/.bitcoin/bitcoin.conf:ro
+    ports:
+      - "8332:8332"  # RPC
+      - "8333:8333"  # P2P
+      - "28332:28332"  # ZMQ blocks
+      - "28333:28333"  # ZMQ txns
+    networks:
+      - bitcoin-net
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+    healthcheck:
+      test: ["CMD", "bitcoin-cli", "-getinfo"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  lnd:
+    image: lightninglabs/lnd:v0.17.4-beta
+    volumes:
+      - lnd_data:/root/.lnd
+    ports:
+      - "9735:9735"  # p2p
+      - "10009:10009"  # grpc
+    command: >
+      --bitcoin.active
+      --bitcoin.mainnet
+      --bitcoin.node=bitcoind
+      --bitcoind.rpchost=bitcoind
+      --bitcoind.rpcuser=${BITCOIN_RPC_USER}
+      --bitcoind.rpcpass=${BITCOIN_RPC_PASS}
+      --bitcoind.zmqpubrawblock=tcp://bitcoind:28332
+      --bitcoind.zmqpubrawtx=tcp://bitcoind:28333
+      --accept-keysend
+      --rpclisten=0.0.0.0:10009
+      --tlsextraip=0.0.0.0
+      --noseedbackup
+      --alias=${LND_ALIAS}
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+    networks:
+      - bitcoin-net
+      - lightning-net
+    depends_on:
+      bitcoind:
+        condition: service_healthy
+    restart: unless-stopped
+
+  synchrono:
+    build: .
+    volumes:
+      - lnd_data:/app/certs:ro
+    environment:
+      - LND_HOST=lnd:10009
+      - LND_CERT_PATH=/app/certs/tls.cert
+      - LND_MACAROON_PATH=/app/certs/data/chain/bitcoin/mainnet/admin.macaroon
+    ports:
+      - "3000:3000"
+    networks:
+      - lightning-net
+    depends_on:
+      - lnd
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v2.49.1
+    volumes:
+      - ./prometheus:/etc/prometheus:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=${PROMETHEUS_RETENTION_DAYS}d'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 2G
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:10.3.3
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3001:3000"
+    networks:
+      - monitoring-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+  bitcoin-exporter:
+    image: prometheus/bitcoind-exporter:latest
+    command:
+      - '--bitcoind.rpc-host=bitcoind'
+      - '--bitcoind.rpc-user=${BITCOIN_RPC_USER}'
+      - '--bitcoind.rpc-password=${BITCOIN_RPC_PASS}'
+    ports:
+      - "9332:9332"
+    networks:
+      - bitcoin-net
+      - monitoring-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 256M
+    depends_on:
+      bitcoind:
+        condition: service_healthy
+
+  lnd-exporter:
+    image: lightninglabs/lnd-prometheus-exporter:v0.3.0
+    volumes:
+      - lnd_data:/lnd:ro
+    environment:
+      - LND_HOST=lnd:10009
+      - MACAROON_PATH=/lnd/data/chain/bitcoin/mainnet/admin.macaroon
+      - TLS_CERT_PATH=/lnd/tls.cert
+    ports:
+      - "9092:9092"
+    networks:
+      - lightning-net
+      - monitoring-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 256M
+    depends_on:
+      - lnd
+
+volumes:
+  bitcoin_data:
+  lnd_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  bitcoin-net:
+    driver: bridge
+  lightning-net:
+    driver: bridge
+  monitoring-net:
+    driver: bridge
