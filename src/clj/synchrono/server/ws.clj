@@ -206,18 +206,30 @@
 (defn handle-message
   "Handles incoming WebSocket messages according to NIP-01 protocol."
   [conn msg]
+  (log/debug "Processing message" {:message msg})
   (try
-    (let [[msg-type & params] (json/parse-string msg true)]
-      (case msg-type
-        "EVENT" (handle-event conn (first params))
-        "REQ" (handle-req conn (first params) (rest params))
-        "CLOSE" (handle-close conn (first params))
+    (let [parsed-msg (json/parse-string (if (string? msg) msg (str msg)) true)]
+      (log/info "Parsed message" {:parsed parsed-msg
+                                 :type (type parsed-msg)
+                                 :vector? (vector? parsed-msg)})
+      (if-not (sequential? parsed-msg)
         (do
-          (log/warn "Unknown message type:" msg-type)
-          (send-notice conn (str "unknown message type: " msg-type)))))
+          (log/warn "Invalid message format - expected array/vector:" parsed-msg)
+          (send-notice conn "error: message must be a JSON array"))
+        
+        (let [[msg-type & params] parsed-msg]
+          (case msg-type
+            "EVENT" (handle-event conn (first params))
+            "REQ"   (handle-req conn (first params) (rest params))
+            "CLOSE" (handle-close conn (first params))
+            
+            (do
+              (log/warn "Unknown message type:" msg-type)
+              (send-notice conn (str "unknown message type: " msg-type)))))))
+              
     (catch Exception e
-      (log/error "Message processing error:" (.getMessage e))
-      (send-notice conn (str "error: invalid message format")))))
+      (log/warn "Message processing error:" (.getMessage e))
+      (send-notice conn (str "error: invalid message format - " (.getMessage e))))))
 
 (defn on-connect
   "Handler for new WebSocket connections"

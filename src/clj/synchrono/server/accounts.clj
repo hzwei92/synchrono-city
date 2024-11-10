@@ -30,7 +30,6 @@
     (catch Exception e
       {:error (.getMessage e)})))
 
-
 (defn get-account-balance-route [req]
   (let [account-id (get-in req [:params :id])
         balance (get-account-balance account-id)]

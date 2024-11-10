@@ -1,9 +1,9 @@
 goog.provide('synchrono.client.body');
 synchrono.client.body.body = (function synchrono$client$body$body(){
 var current_route = re_frame.core.subscribe.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"current-route","current-route",2067529448)], null));
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.body","div.body",-96313067),(function (){var G__16182 = cljs.core.deref(current_route);
-var G__16182__$1 = (((G__16182 instanceof cljs.core.Keyword))?G__16182.fqn:null);
-switch (G__16182__$1) {
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.body","div.body",-96313067),(function (){var G__21302 = cljs.core.deref(current_route);
+var G__21302__$1 = (((G__21302 instanceof cljs.core.Keyword))?G__21302.fqn:null);
+switch (G__21302__$1) {
 case "about":
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [synchrono.client.about.about], null);
 
@@ -16,8 +16,8 @@ case "relays":
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [synchrono.client.relays.relays], null);
 
 break;
-case "contracts":
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [synchrono.client.contracts.contracts], null);
+case "subscriptions":
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [synchrono.client.subscriptions.subscriptions], null);
 
 break;
 case "write":
@@ -29,7 +29,7 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
 
 break;
 default:
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [synchrono.client.about.about], null);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),"404"], null);
 
 }
 })()], null);
@@ -37,10 +37,10 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
 re_frame.core.reg_sub.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"current-route","current-route",2067529448),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (db){
 return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"app","app",-560961707),new cljs.core.Keyword(null,"current-route","current-route",2067529448)], null));
 })], 0));
-re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"set-current-route","set-current-route",-154604093),(function (db,p__16183){
-var vec__16184 = p__16183;
-var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__16184,(0),null);
-var route = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__16184,(1),null);
+re_frame.core.reg_event_db.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"set-current-route","set-current-route",-154604093),(function (db,p__21303){
+var vec__21304 = p__21303;
+var _ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21304,(0),null);
+var route = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21304,(1),null);
 return cljs.core.assoc_in(cljs.core.assoc_in(db,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"app","app",-560961707),new cljs.core.Keyword(null,"current-route","current-route",2067529448)], null),route),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"app","app",-560961707),new cljs.core.Keyword(null,"menu-open?","menu-open?",-1909849203)], null),false);
 }));
 

@@ -1594,3 +1594,881 @@ clojure.lang.Delay@c48547e DEBUG [synchrono.server.ws:230] - Processing CLOSE me
 2024-11-08 21:44:57.876 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 5 events for sub sub:1
 2024-11-08 21:44:57.932 Peters-Air-2.lan DEBUG [synchrono.server.ws:201] - Processing CLOSE message {:subscription-id "sub:1"}
 2024-11-08 22:34:54.626 Peters-Air-2.lan INFO [synchrono.server.ws:250] - WebSocket disconnected: manifold.stream.SplicedStream@e1e37ac
+2024-11-09 08:00:58.455 Peters-Air-2.lan INFO [synchrono.server.core:80] - Initializing database
+2024-11-09 08:00:58.466 Peters-Air-2.lan INFO [synchrono.server.core:62] - Starting server on port 3000
+2024-11-09 08:00:58.499 Peters-Air-2.lan INFO [synchrono.server.core:64] - Server started successfully - ready to accept connections
+2024-11-09 08:01:03.943 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 9ms
+2024-11-09 08:01:04.596 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 08:04:57.631 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 12ms
+2024-11-09 08:04:58.207 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 2ms
+2024-11-09 08:05:06.753 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 08:05:07.245 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 08:52:21.442 Peters-Air-2.lan INFO [synchrono.server.core:80] - Initializing database
+2024-11-09 08:52:21.453 Peters-Air-2.lan INFO [synchrono.server.core:62] - Starting server on port 3000
+2024-11-09 08:52:21.512 Peters-Air-2.lan INFO [synchrono.server.core:64] - Server started successfully - ready to accept connections
+2024-11-09 08:54:40.776 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 9ms
+2024-11-09 08:54:41.106 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 08:57:08.387 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 08:57:08.680 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 0ms
+2024-11-09 08:57:51.555 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 08:57:51.736 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 0ms
+2024-11-09 08:58:06.986 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 08:58:07.164 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 0ms
+2024-11-09 08:58:38.837 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 08:58:38.997 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 08:58:58.304 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 08:58:58.481 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 5ms
+2024-11-09 09:01:45.769 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:01:45.914 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 0ms
+2024-11-09 09:05:29.429 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:05:29.591 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 0ms
+2024-11-09 09:06:08.155 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:06:08.307 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 09:09:35.687 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:09:35.840 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 0ms
+2024-11-09 09:10:34.622 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:10:34.776 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 09:11:27.304 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:11:27.467 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 2ms
+2024-11-09 09:12:35.487 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:12:35.648 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 2ms
+2024-11-09 09:12:47.638 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:12:47.801 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 09:13:54.557 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:13:54.710 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 09:17:01.207 Peters-Air-2.lan INFO [synchrono.server.core:80] - Initializing database
+2024-11-09 09:17:01.219 Peters-Air-2.lan INFO [synchrono.server.core:62] - Starting server on port 3000
+2024-11-09 09:17:01.250 Peters-Air-2.lan INFO [synchrono.server.core:64] - Server started successfully - ready to accept connections
+2024-11-09 09:17:02.700 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 8ms
+2024-11-09 09:17:02.981 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 0ms
+2024-11-09 09:19:01.619 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 0ms
+2024-11-09 09:19:02.107 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 2ms
+2024-11-09 09:19:24.789 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 0ms
+2024-11-09 09:19:25.271 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 09:20:34.521 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:20:35.018 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 0ms
+2024-11-09 09:21:35.671 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 09:21:36.138 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 09:21:47.568 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 0ms
+2024-11-09 09:21:48.049 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 0ms
+2024-11-09 19:23:42.490 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 19:23:42.961 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 1ms
+2024-11-09 19:47:10.193 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 3ms
+2024-11-09 19:47:10.697 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] /ws 404 - 2ms
+2024-11-09 19:47:26.967 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 19:49:34.650 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 19:49:44.863 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 19:53:14.115 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 19:55:09.040 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 19:55:09.540 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 19:57:57.653 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 0ms
+2024-11-09 19:57:58.141 Peters-Air-2.lan INFO [synchrono.server.core:40] - [:get] / 200 - 1ms
+2024-11-09 19:58:16.738 Peters-Air-2.lan INFO [synchrono.server.core:106] - Initializing database
+2024-11-09 19:58:16.760 Peters-Air-2.lan INFO [synchrono.server.core:88] - Starting server on port 3000
+2024-11-09 19:58:16.798 Peters-Air-2.lan INFO [synchrono.server.core:90] - Server started successfully - ready to accept connections
+2024-11-09 19:58:20.870 Peters-Air-2.lan INFO [synchrono.server.core:66] - [:get] / 302 - 2ms
+2024-11-09 19:58:20.886 Peters-Air-2.lan INFO [synchrono.server.core:66] - [:get] /app 200 - 8ms
+2024-11-09 19:58:21.372 Peters-Air-2.lan INFO [synchrono.server.core:66] - [:get] / 200 - 6ms
+2024-11-09 20:00:43.134 Peters-Air-2.lan INFO [synchrono.server.core:66] - [:get] /app 200 - 2ms
+2024-11-09 20:00:43.630 Peters-Air-2.lan INFO [synchrono.server.core:66] - [:get] / 200 - 2ms
+2024-11-09 20:01:00.930 Peters-Air-2.lan INFO [synchrono.server.core:98] - Initializing database
+2024-11-09 20:01:00.949 Peters-Air-2.lan INFO [synchrono.server.core:80] - Starting server on port 3000
+2024-11-09 20:01:01.033 Peters-Air-2.lan INFO [synchrono.server.core:82] - Server started successfully - ready to accept connections
+2024-11-09 20:01:06.311 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] /app 404 - 2ms
+2024-11-09 20:01:12.612 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 2ms
+2024-11-09 20:01:13.107 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 7ms
+2024-11-09 20:02:32.366 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:02:32.862 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:02:34.145 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:02:34.578 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:02:35.504 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:02:35.957 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:03:09.724 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:03:10.188 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:04:15.753 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:04:16.205 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:04:37.264 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:04:37.726 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:05:13.652 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:05:14.116 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:05:48.181 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:05:48.643 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:06:24.554 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 2ms
+2024-11-09 20:06:49.301 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:07:03.353 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:07:04.874 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:07:19.258 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:07:47.155 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:07:47.616 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:07:51.562 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:07:51.982 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:08:47.382 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:08:47.874 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:09:21.480 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:09:21.950 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:10:15.128 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:10:15.629 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:11:11.947 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:11:12.449 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 2ms
+2024-11-09 20:11:55.343 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:11:55.833 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:12:17.555 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:12:18.039 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:12:37.898 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:13:33.773 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:13:43.850 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:13:44.334 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 4ms
+2024-11-09 20:13:58.260 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:14:47.014 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:14:47.516 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 2ms
+2024-11-09 20:16:06.573 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 20:16:07.051 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:17:10.656 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 0ms
+2024-11-09 20:17:11.144 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 4ms
+2024-11-09 21:29:13.865 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 8ms
+2024-11-09 21:29:14.384 Peters-Air-2.lan INFO [synchrono.server.core:58] - [:get] / 200 - 1ms
+2024-11-09 21:29:32.536 Peters-Air-2.lan INFO [synchrono.server.core:95] - Initializing database
+2024-11-09 21:29:32.558 Peters-Air-2.lan INFO [synchrono.server.core:77] - Starting server on port 3000
+2024-11-09 21:29:32.596 Peters-Air-2.lan INFO [synchrono.server.core:79] - Server started successfully - ready to accept connections
+2024-11-09 21:29:35.461 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 10ms
+2024-11-09 21:29:35.968 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 16ms
+2024-11-09 21:32:55.845 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 21:32:56.337 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:34:17.200 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:34:17.727 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:43:03.555 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 21:43:04.094 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 21:44:07.330 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:44:07.809 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:44:47.874 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:44:48.380 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 21:45:19.261 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:45:19.721 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:47:02.931 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 21:47:03.464 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 21:47:35.774 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:47:36.259 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:50:10.939 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:50:11.468 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 7ms
+2024-11-09 21:51:56.535 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 21:51:57.156 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-09 21:52:46.929 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:52:47.511 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:53:04.282 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:53:04.761 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:53:18.811 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 21:53:19.282 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 12ms
+2024-11-09 21:53:28.836 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:53:29.310 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:53:37.902 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:53:38.431 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:55:24.673 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 21:55:25.233 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 13ms
+2024-11-09 21:55:46.305 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:55:46.848 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:55:55.631 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:55:56.153 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 21:56:24.855 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:56:25.310 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:57:08.132 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 21:57:08.674 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 22:00:38.562 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 22:00:39.178 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:01:11.654 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 22:01:12.292 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:09:45.712 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 22:09:46.322 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:10:25.478 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 22:10:26.094 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:10:57.335 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:10:57.933 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 22:28:43.785 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 22:28:44.355 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 16ms
+2024-11-09 22:38:26.554 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 22:38:27.220 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:43:17.751 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 22:43:18.303 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:44:51.301 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 22:44:51.858 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:45:19.582 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 22:45:20.089 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:45:41.962 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:45:42.462 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:46:10.524 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:46:11.042 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:46:36.026 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 22:46:36.559 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 22:55:47.457 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 22:55:48.076 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:03:07.591 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:03:08.163 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:04:54.313 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:04:54.906 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:10:50.110 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:10:50.719 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 23:11:25.639 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 23:11:26.144 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:13:48.222 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:13:48.862 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:18:31.032 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:18:31.627 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:21:16.343 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:21:16.965 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 23:24:11.355 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 23:24:11.943 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:27:39.733 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 32ms
+2024-11-09 23:27:40.349 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:30:31.094 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:30:31.671 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 23:31:16.153 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:31:16.739 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 23:31:58.346 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:31:58.936 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:34:03.196 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 7ms
+2024-11-09 23:34:03.834 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 7ms
+2024-11-09 23:35:06.957 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:35:07.534 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-09 23:36:03.476 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:36:04.067 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:37:03.455 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:37:04.025 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:39:01.865 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 23:39:02.462 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-09 23:39:11.084 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:39:11.619 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:39:54.027 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:39:54.642 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:40:07.156 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:40:07.707 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:40:32.204 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:40:32.742 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 23:41:12.383 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:41:12.959 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:41:42.016 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:41:42.558 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:42:52.538 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-09 23:42:53.096 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-09 23:47:17.534 Peters-Air-2.lan INFO [synchrono.server.ws:245] - WebSocket connected: manifold.stream.SplicedStream@53e44576
+2024-11-09 23:47:17.543 Peters-Air-2.lan DEBUG [synchrono.server.ws:150] - Processing EVENT message {:event-id "66575b21b539578cba97574edf510df8a0556bc3756de584379502700dfe3a62", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-09 23:47:17.573 Peters-Air-2.lan INFO [synchrono.server.ws:157] - Successfully processed and broadcast event {:event-id "66575b21b539578cba97574edf510df8a0556bc3756de584379502700dfe3a62", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-09 23:47:17.575 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 97ms
+2024-11-09 23:55:25.613 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-09 23:55:25.652 Peters-Air-2.lan INFO [synchrono.server.ws:250] - WebSocket disconnected: manifold.stream.SplicedStream@53e44576
+2024-11-09 23:55:26.271 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 00:27:34.709 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 00:27:35.357 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 00:39:16.521 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 00:39:17.129 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 00:40:42.661 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 00:40:43.237 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 00:46:54.203 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 00:46:54.798 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 00:48:01.199 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 00:48:01.768 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 00:50:32.710 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 00:50:33.309 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 00:50:45.560 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 00:50:46.076 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 00:52:11.674 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 00:52:12.266 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 00:53:11.893 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 00:53:12.457 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 00:54:44.559 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 00:54:45.144 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 00:54:47.346 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 00:54:47.855 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 00:57:33.134 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 00:57:33.716 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 00:59:13.157 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 00:59:13.733 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:01:14.400 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 01:01:14.975 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:01:55.801 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:01:56.307 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 01:02:26.843 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 01:02:27.347 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:02:55.979 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:02:56.531 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:03:02.160 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:03:02.648 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:03:36.319 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 01:03:36.894 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:14:27.565 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 01:14:28.177 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:16:20.030 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 7ms
+2024-11-10 01:16:20.653 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:16:52.193 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:16:52.675 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:17:12.939 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:17:13.430 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:17:22.508 Peters-Air-2.lan INFO [synchrono.server.ws:245] - WebSocket connected: manifold.stream.SplicedStream@38cf8f45
+2024-11-10 01:17:22.511 Peters-Air-2.lan DEBUG [synchrono.server.ws:150] - Processing EVENT message {:event-id "d41b435e0764a4b8b1d47c0eeacb76f996db6c6a64c587302eef7100189a932f", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-10 01:17:22.528 Peters-Air-2.lan INFO [synchrono.server.ws:157] - Successfully processed and broadcast event {:event-id "d41b435e0764a4b8b1d47c0eeacb76f996db6c6a64c587302eef7100189a932f", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-10 01:17:22.530 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 27ms
+2024-11-10 01:19:07.371 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:19:07.392 Peters-Air-2.lan INFO [synchrono.server.ws:250] - WebSocket disconnected: manifold.stream.SplicedStream@38cf8f45
+2024-11-10 01:19:08.033 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 01:19:37.166 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:19:37.689 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:20:40.240 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:20:40.885 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 19ms
+2024-11-10 01:21:36.542 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 01:21:37.128 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:24:55.142 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 01:24:55.779 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:26:07.174 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 01:26:07.824 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 01:27:57.576 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 01:27:58.236 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:28:36.662 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:28:37.225 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:29:07.464 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:29:07.999 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:30:31.130 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 01:30:31.745 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 01:30:47.414 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:30:47.953 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:30:52.593 Peters-Air-2.lan INFO [synchrono.server.ws:245] - WebSocket connected: manifold.stream.SplicedStream@3dd48bad
+2024-11-10 01:30:52.596 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 5ms
+2024-11-10 01:30:52.598 Peters-Air-2.lan ERROR [synchrono.server.ws:219] - Message processing error: Unexpected character (':' (code 58)): was expecting comma to separate Array entries
+ at [Source: (StringReader); line: 1, column: 24]
+2024-11-10 01:30:57.000 Peters-Air-2.lan DEBUG [synchrono.server.ws:201] - Processing CLOSE message {:subscription-id "sub:1"}
+2024-11-10 01:31:47.926 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 01:31:47.940 Peters-Air-2.lan INFO [synchrono.server.ws:250] - WebSocket disconnected: manifold.stream.SplicedStream@3dd48bad
+2024-11-10 01:31:48.505 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 01:31:53.842 Peters-Air-2.lan INFO [synchrono.server.ws:245] - WebSocket connected: manifold.stream.SplicedStream@73bb5e2f
+2024-11-10 01:31:53.844 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 5ms
+2024-11-10 01:31:53.844 Peters-Air-2.lan ERROR [synchrono.server.ws:219] - Message processing error: Unexpected character (':' (code 58)): was expecting comma to separate Array entries
+ at [Source: (StringReader); line: 1, column: 24]
+2024-11-10 01:31:58.245 Peters-Air-2.lan DEBUG [synchrono.server.ws:201] - Processing CLOSE message {:subscription-id "sub:1"}
+2024-11-10 01:32:19.883 Peters-Air-2.lan DEBUG [synchrono.server.ws:150] - Processing EVENT message {:event-id "a2292308a5d71a77b87f1c77211a6a0708048566299f9a90d3f4ff8dadece810", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-10 01:32:19.899 Peters-Air-2.lan INFO [synchrono.server.ws:157] - Successfully processed and broadcast event {:event-id "a2292308a5d71a77b87f1c77211a6a0708048566299f9a90d3f4ff8dadece810", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-10 01:32:29.371 Peters-Air-2.lan ERROR [synchrono.server.ws:219] - Message processing error: Unexpected character (':' (code 58)): was expecting comma to separate Array entries
+ at [Source: (StringReader); line: 1, column: 24]
+2024-11-10 01:32:33.773 Peters-Air-2.lan DEBUG [synchrono.server.ws:201] - Processing CLOSE message {:subscription-id "sub:2"}
+2024-11-10 01:33:56.311 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:33:56.320 Peters-Air-2.lan INFO [synchrono.server.ws:250] - WebSocket disconnected: manifold.stream.SplicedStream@73bb5e2f
+2024-11-10 01:33:56.913 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 7ms
+2024-11-10 01:34:12.959 Peters-Air-2.lan INFO [synchrono.server.ws:245] - WebSocket connected: manifold.stream.SplicedStream@2a0992f8
+2024-11-10 01:34:12.961 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 5ms
+2024-11-10 01:34:12.962 Peters-Air-2.lan DEBUG [synchrono.server.ws:150] - Processing EVENT message {:event-id "6634603a2e2d73cd872faf9d56deeea28c1cf5d9638f6a148384edafb58dc1f2", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-10 01:34:12.975 Peters-Air-2.lan INFO [synchrono.server.ws:157] - Successfully processed and broadcast event {:event-id "6634603a2e2d73cd872faf9d56deeea28c1cf5d9638f6a148384edafb58dc1f2", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-10 01:34:21.944 Peters-Air-2.lan ERROR [synchrono.server.ws:219] - Message processing error: Unexpected character (':' (code 58)): was expecting comma to separate Array entries
+ at [Source: (StringReader); line: 1, column: 24]
+2024-11-10 01:34:26.346 Peters-Air-2.lan DEBUG [synchrono.server.ws:201] - Processing CLOSE message {:subscription-id "sub:1"}
+2024-11-10 01:34:28.814 Peters-Air-2.lan ERROR [synchrono.server.ws:219] - Message processing error: Unexpected character (':' (code 58)): was expecting comma to separate Array entries
+ at [Source: (StringReader); line: 1, column: 24]
+2024-11-10 01:34:29.759 Peters-Air-2.lan ERROR [synchrono.server.ws:219] - Message processing error: Unexpected character (':' (code 58)): was expecting comma to separate Array entries
+ at [Source: (StringReader); line: 1, column: 24]
+2024-11-10 01:34:30.478 Peters-Air-2.lan ERROR [synchrono.server.ws:219] - Message processing error: Unexpected character (':' (code 58)): was expecting comma to separate Array entries
+ at [Source: (StringReader); line: 1, column: 24]
+2024-11-10 01:34:33.218 Peters-Air-2.lan DEBUG [synchrono.server.ws:201] - Processing CLOSE message {:subscription-id "sub:2"}
+2024-11-10 01:34:34.161 Peters-Air-2.lan DEBUG [synchrono.server.ws:201] - Processing CLOSE message {:subscription-id "sub:3"}
+2024-11-10 01:34:34.881 Peters-Air-2.lan DEBUG [synchrono.server.ws:201] - Processing CLOSE message {:subscription-id "sub:4"}
+2024-11-10 01:35:09.309 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 01:35:09.322 Peters-Air-2.lan INFO [synchrono.server.ws:250] - WebSocket disconnected: manifold.stream.SplicedStream@2a0992f8
+2024-11-10 01:35:09.944 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:35:18.447 Peters-Air-2.lan INFO [synchrono.server.core:95] - Initializing database
+2024-11-10 01:35:18.459 Peters-Air-2.lan INFO [synchrono.server.core:77] - Starting server on port 3000
+2024-11-10 01:35:18.495 Peters-Air-2.lan INFO [synchrono.server.core:79] - Server started successfully - ready to accept connections
+2024-11-10 01:35:22.107 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 10ms
+2024-11-10 01:35:22.596 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 01:35:26.004 Peters-Air-2.lan INFO [synchrono.server.ws:260] - WebSocket connected: manifold.stream.SplicedStream@2d8b5a7
+2024-11-10 01:35:26.008 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:1\",\"kinds\":[1],\"limit\":50}"}
+2024-11-10 01:35:26.017 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["REQ","sub:1","kinds":[1],"limit":50}
+2024-11-10 01:35:26.022 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 39ms
+2024-11-10 01:35:30.408 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"CLOSE\",\"sub:1\"]"}
+2024-11-10 01:35:30.409 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["CLOSE","sub:1"]
+2024-11-10 01:38:35.471 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 01:38:35.552 Peters-Air-2.lan INFO [synchrono.server.ws:265] - WebSocket disconnected: manifold.stream.SplicedStream@2d8b5a7
+2024-11-10 01:38:36.068 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 01:38:40.761 Peters-Air-2.lan INFO [synchrono.server.ws:260] - WebSocket connected: manifold.stream.SplicedStream@5bf9c079
+2024-11-10 01:38:40.763 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 5ms
+2024-11-10 01:38:40.762 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:1\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:38:40.764 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["REQ","sub:1",{"kinds":[1],"limit":50}]
+2024-11-10 01:38:45.172 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"CLOSE\",\"sub:1\"]"}
+2024-11-10 01:38:45.173 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["CLOSE","sub:1"]
+2024-11-10 01:38:53.363 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:2\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:38:53.365 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["REQ","sub:2",{"kinds":[1],"limit":50}]
+2024-11-10 01:38:57.770 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"CLOSE\",\"sub:2\"]"}
+2024-11-10 01:38:57.773 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["CLOSE","sub:2"]
+2024-11-10 01:40:28.593 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 34ms
+2024-11-10 01:40:28.652 Peters-Air-2.lan INFO [synchrono.server.ws:265] - WebSocket disconnected: manifold.stream.SplicedStream@5bf9c079
+2024-11-10 01:40:29.201 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:40:33.345 Peters-Air-2.lan INFO [synchrono.server.ws:260] - WebSocket connected: manifold.stream.SplicedStream@17ff69e3
+2024-11-10 01:40:33.347 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 4ms
+2024-11-10 01:40:33.347 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:1\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:40:33.349 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["REQ","sub:1",{"kinds":[1],"limit":50}]
+2024-11-10 01:42:17.406 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 01:42:17.418 Peters-Air-2.lan INFO [synchrono.server.ws:265] - WebSocket disconnected: manifold.stream.SplicedStream@17ff69e3
+2024-11-10 01:42:18.066 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:42:20.775 Peters-Air-2.lan INFO [synchrono.server.ws:260] - WebSocket connected: manifold.stream.SplicedStream@410517ec
+2024-11-10 01:42:20.776 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 5ms
+2024-11-10 01:42:20.776 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:1\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:42:20.778 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["REQ","sub:1",{"kinds":[1],"limit":50}]
+2024-11-10 01:43:21.628 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 01:43:21.688 Peters-Air-2.lan INFO [synchrono.server.ws:265] - WebSocket disconnected: manifold.stream.SplicedStream@410517ec
+2024-11-10 01:43:22.217 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 01:43:24.440 Peters-Air-2.lan INFO [synchrono.server.ws:260] - WebSocket connected: manifold.stream.SplicedStream@201a9113
+2024-11-10 01:43:24.442 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 5ms
+2024-11-10 01:43:24.442 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:1\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:43:24.443 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["REQ","sub:1",{"kinds":[1],"limit":50}]
+2024-11-10 01:45:54.559 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 01:45:54.591 Peters-Air-2.lan INFO [synchrono.server.ws:265] - WebSocket disconnected: manifold.stream.SplicedStream@201a9113
+2024-11-10 01:45:55.174 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 8ms
+2024-11-10 01:45:59.444 Peters-Air-2.lan INFO [synchrono.server.ws:260] - WebSocket connected: manifold.stream.SplicedStream@6f71049d
+2024-11-10 01:45:59.446 Peters-Air-2.lan INFO [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:1\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:45:59.447 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 7ms
+2024-11-10 01:45:59.447 Peters-Air-2.lan WARN [synchrono.server.ws:230] - Invalid message format - expected array/vector: ["REQ","sub:1",{"kinds":[1],"limit":50}]
+2024-11-10 01:47:16.295 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 01:47:16.308 Peters-Air-2.lan INFO [synchrono.server.ws:265] - WebSocket disconnected: manifold.stream.SplicedStream@6f71049d
+2024-11-10 01:47:16.896 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:47:30.105 Peters-Air-2.lan INFO [synchrono.server.core:95] - Initializing database
+2024-11-10 01:47:30.116 Peters-Air-2.lan INFO [synchrono.server.core:77] - Starting server on port 3000
+2024-11-10 01:47:30.152 Peters-Air-2.lan INFO [synchrono.server.core:79] - Server started successfully - ready to accept connections
+2024-11-10 01:47:31.109 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 8ms
+2024-11-10 01:47:31.636 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 7ms
+2024-11-10 01:47:33.310 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:47:33.823 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:47:37.331 Peters-Air-2.lan INFO [synchrono.server.ws:257] - WebSocket connected: manifold.stream.SplicedStream@3fe68885
+2024-11-10 01:47:37.333 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:1\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:47:37.340 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:1" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:47:37.350 Peters-Air-2.lan WARN [synchrono.server.ws:217] - Invalid message format - expected array/vector: ("REQ" "sub:1" {:kinds [1], :limit 50})
+2024-11-10 01:47:37.353 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 37ms
+2024-11-10 01:48:22.152 Peters-Air-2.lan INFO [synchrono.server.core:95] - Initializing database
+2024-11-10 01:48:22.163 Peters-Air-2.lan INFO [synchrono.server.core:77] - Starting server on port 3000
+2024-11-10 01:48:22.197 Peters-Air-2.lan INFO [synchrono.server.core:79] - Server started successfully - ready to accept connections
+2024-11-10 01:48:22.968 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 9ms
+2024-11-10 01:48:23.589 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 01:48:26.017 Peters-Air-2.lan INFO [synchrono.server.ws:257] - WebSocket connected: manifold.stream.SplicedStream@2c1041c6
+2024-11-10 01:48:26.019 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:1\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:48:26.033 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:1" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:48:26.039 Peters-Air-2.lan DEBUG [synchrono.server.ws:179] - Processing REQ {:sub-id "sub:1"}
+2024-11-10 01:48:26.043 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 4 events for sub sub:1
+2024-11-10 01:48:26.048 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 45ms
+2024-11-10 01:48:45.187 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 01:48:45.207 Peters-Air-2.lan INFO [synchrono.server.ws:262] - WebSocket disconnected: manifold.stream.SplicedStream@2c1041c6
+2024-11-10 01:48:45.723 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 01:48:54.838 Peters-Air-2.lan INFO [synchrono.server.ws:257] - WebSocket connected: manifold.stream.SplicedStream@2d9c7fbf
+2024-11-10 01:48:54.840 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 404 - 4ms
+2024-11-10 01:48:54.841 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:1\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:48:54.842 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:1" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:48:54.842 Peters-Air-2.lan DEBUG [synchrono.server.ws:179] - Processing REQ {:sub-id "sub:1"}
+2024-11-10 01:48:54.846 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 4 events for sub sub:1
+2024-11-10 01:48:57.035 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:2\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:48:57.036 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:2" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:48:57.037 Peters-Air-2.lan DEBUG [synchrono.server.ws:179] - Processing REQ {:sub-id "sub:2"}
+2024-11-10 01:48:57.040 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 4 events for sub sub:2
+2024-11-10 01:48:57.829 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:3\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:48:57.831 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:3" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:48:57.832 Peters-Air-2.lan DEBUG [synchrono.server.ws:179] - Processing REQ {:sub-id "sub:3"}
+2024-11-10 01:48:57.835 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 4 events for sub sub:3
+2024-11-10 01:48:58.102 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:4\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:48:58.103 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:4" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:48:58.104 Peters-Air-2.lan DEBUG [synchrono.server.ws:179] - Processing REQ {:sub-id "sub:4"}
+2024-11-10 01:48:58.107 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 4 events for sub sub:4
+2024-11-10 01:48:58.309 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:5\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:48:58.310 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:5" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:48:58.311 Peters-Air-2.lan DEBUG [synchrono.server.ws:179] - Processing REQ {:sub-id "sub:5"}
+2024-11-10 01:48:58.314 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 4 events for sub sub:5
+2024-11-10 01:48:58.760 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:6\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:48:58.761 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:6" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:48:58.761 Peters-Air-2.lan DEBUG [synchrono.server.ws:179] - Processing REQ {:sub-id "sub:6"}
+2024-11-10 01:48:58.764 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 4 events for sub sub:6
+2024-11-10 01:48:58.967 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:7\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:48:58.968 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:7" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:48:58.968 Peters-Air-2.lan DEBUG [synchrono.server.ws:179] - Processing REQ {:sub-id "sub:7"}
+2024-11-10 01:48:58.971 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 4 events for sub sub:7
+2024-11-10 01:49:16.646 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"EVENT\",{\"kind\":1,\"content\":\"<p>woot woot</p>\",\"created_at\":1731203356,\"tags\":[],\"pubkey\":\"218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5\",\"id\":\"cfba27c117a18c3f181e0f7fc6a115ca0e723af568ec73044ec1898d217035a9\",\"sig\":\"316df129b860753b57216770db403662a513828deb8acb0139551942131f76f892cea8444f92bc41684e1d6d5de5af9e8950c0210b03c1d8c4c5c62b58758b83\"}]"}
+2024-11-10 01:49:16.648 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("EVENT" {:kind 1, :content "<p>woot woot</p>", :created_at 1731203356, :tags [], :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :id "cfba27c117a18c3f181e0f7fc6a115ca0e723af568ec73044ec1898d217035a9", :sig "316df129b860753b57216770db403662a513828deb8acb0139551942131f76f892cea8444f92bc41684e1d6d5de5af9e8950c0210b03c1d8c4c5c62b58758b83"}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:49:16.651 Peters-Air-2.lan DEBUG [synchrono.server.ws:150] - Processing EVENT message {:event-id "cfba27c117a18c3f181e0f7fc6a115ca0e723af568ec73044ec1898d217035a9", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-10 01:49:16.688 Peters-Air-2.lan INFO [synchrono.server.ws:157] - Successfully processed and broadcast event {:event-id "cfba27c117a18c3f181e0f7fc6a115ca0e723af568ec73044ec1898d217035a9", :pubkey "218c2daaee0049b25aecfc70578612e107c73dba3bd4387a1946ee2ce2be4bd5", :kind 1}
+2024-11-10 01:49:16.688 Peters-Air-2.lan WARN [synchrono.server.ws:231] - Message processing error: class clojure.lang.ChunkedCons cannot be cast to class clojure.lang.IPersistentMap (clojure.lang.ChunkedCons and clojure.lang.IPersistentMap are in unnamed module of loader 'app')
+2024-11-10 01:49:19.789 Peters-Air-2.lan DEBUG [synchrono.server.ws:209] - Processing message {:message "[\"REQ\",\"sub:8\",{\"kinds\":[1],\"limit\":50}]"}
+2024-11-10 01:49:19.790 Peters-Air-2.lan INFO [synchrono.server.ws:212] - Parsed message {:parsed ("REQ" "sub:8" {:kinds [1], :limit 50}), :type clojure.lang.LazySeq, :vector? false}
+2024-11-10 01:49:19.791 Peters-Air-2.lan DEBUG [synchrono.server.ws:179] - Processing REQ {:sub-id "sub:8"}
+2024-11-10 01:49:19.793 Peters-Air-2.lan DEBUG [synchrono.server.ws:183] - Found 5 events for sub sub:8
+2024-11-10 02:32:12.777 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 02:32:12.804 Peters-Air-2.lan INFO [synchrono.server.ws:262] - WebSocket disconnected: manifold.stream.SplicedStream@2d9c7fbf
+2024-11-10 02:32:13.492 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:33:20.587 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:33:21.278 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 11ms
+2024-11-10 02:34:14.652 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:34:15.188 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:35:25.592 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 12ms
+2024-11-10 02:35:26.146 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:35:33.181 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:35:33.727 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:35:47.082 Peters-Air-2.lan INFO [synchrono.server.core:95] - Initializing database
+2024-11-10 02:35:47.098 Peters-Air-2.lan INFO [synchrono.server.core:77] - Starting server on port 3000
+2024-11-10 02:35:47.147 Peters-Air-2.lan INFO [synchrono.server.core:79] - Server started successfully - ready to accept connections
+2024-11-10 02:36:01.711 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 8ms
+2024-11-10 02:36:02.273 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 02:36:25.519 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:36:26.054 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:37:18.079 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:37:18.730 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:38:06.921 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:38:07.483 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:38:35.370 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:38:35.891 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:38:42.551 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:38:43.081 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:47:17.529 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 02:47:18.153 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:47:33.782 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:47:34.322 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:47:44.465 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:47:44.980 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 02:48:11.699 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:48:12.246 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 02:48:19.338 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:48:19.863 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:48:58.795 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:48:59.365 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:49:03.440 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:49:03.968 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:49:16.906 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:49:17.399 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:50:03.175 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 02:50:03.737 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:50:17.164 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:50:17.676 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:50:23.133 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:50:23.653 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:50:38.374 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:50:38.894 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:50:51.151 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:50:51.755 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:51:37.283 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 02:51:37.878 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:53:01.730 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 02:53:02.282 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 02:53:23.937 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 02:53:24.545 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 03:25:09.904 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 03:25:10.587 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 14ms
+2024-11-10 03:29:41.342 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 03:29:42.065 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 29ms
+2024-11-10 03:32:02.051 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 9ms
+2024-11-10 03:32:02.707 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 03:33:01.191 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 03:33:01.984 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 03:33:27.603 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 03:33:28.245 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 03:34:49.964 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 03:34:50.668 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 03:36:40.559 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 03:36:41.226 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 03:38:51.481 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 03:38:52.177 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 03:39:37.283 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 03:39:37.959 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 03:54:59.926 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 03:55:00.746 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 03:55:03.929 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 03:55:04.521 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 04:24:58.150 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 04:24:58.869 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 7ms
+2024-11-10 04:38:39.676 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 04:38:40.451 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 21ms
+2024-11-10 04:39:24.413 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 04:39:25.142 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 04:39:32.580 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 04:39:33.084 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 04:40:08.548 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 04:40:09.151 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 04:41:14.883 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 04:41:15.566 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 04:54:56.101 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 04:54:56.726 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 20ms
+2024-11-10 05:03:19.121 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:03:19.775 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 05:04:56.475 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 05:04:57.303 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 05:08:42.572 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:08:43.221 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 05:10:21.147 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:10:21.821 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:12:37.560 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:12:38.228 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 05:14:08.606 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 15ms
+2024-11-10 05:14:09.251 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:15:09.506 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:15:10.195 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:16:08.502 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 05:16:09.142 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:19:18.957 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:19:19.727 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:23:20.315 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:23:20.970 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 05:25:47.720 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:25:48.381 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 05:26:00.323 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:26:00.838 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:27:39.556 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:27:40.152 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:27:49.868 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:27:50.371 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 05:40:26.529 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 05:40:27.183 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 05:41:07.078 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:41:07.742 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 10ms
+2024-11-10 05:41:31.663 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:41:32.320 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 05:41:42.774 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:41:43.336 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:43:53.783 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 05:43:54.372 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 05:46:06.438 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 10ms
+2024-11-10 05:46:07.219 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 05:46:30.463 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 05:46:31.078 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 7ms
+2024-11-10 05:47:36.823 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 05:47:37.544 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 05:56:07.667 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 05:56:08.306 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:00:58.573 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:00:59.246 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 10ms
+2024-11-10 06:01:11.372 Peters-Air-2.lan INFO [synchrono.server.core:95] - Initializing database
+2024-11-10 06:01:11.383 Peters-Air-2.lan INFO [synchrono.server.core:77] - Starting server on port 3000
+2024-11-10 06:01:11.416 Peters-Air-2.lan INFO [synchrono.server.core:79] - Server started successfully - ready to accept connections
+2024-11-10 06:15:34.669 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 10ms
+2024-11-10 06:15:35.424 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 67ms
+2024-11-10 06:16:21.953 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 06:16:22.569 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:21:40.775 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:21:41.427 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 23ms
+2024-11-10 06:24:38.539 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:24:39.190 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:27:56.373 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:27:57.075 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 06:32:28.899 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:32:29.529 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:33:11.901 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:33:12.566 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:36:51.356 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:36:51.964 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:38:14.295 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:38:14.947 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:38:21.960 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 06:38:22.463 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:38:27.002 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:38:27.593 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:38:52.868 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:38:53.460 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:40:23.824 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 8ms
+2024-11-10 06:40:24.469 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:40:56.182 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:40:56.742 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:41:06.716 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:41:07.336 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 06:41:32.519 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:41:33.167 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:42:09.058 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:42:09.684 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:42:50.028 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:42:50.671 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 06:43:24.704 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:43:25.266 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:44:02.465 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:44:03.084 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:45:27.908 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:45:28.526 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 06:45:49.408 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:45:49.985 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 06:46:53.335 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:46:53.981 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:47:43.550 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:47:44.250 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:48:45.200 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:48:45.853 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:49:24.938 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:49:25.597 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:51:50.588 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 06:51:51.340 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 06:52:34.058 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:52:34.777 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 11ms
+2024-11-10 06:57:33.744 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 06:57:34.412 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:03:28.347 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 07:03:28.972 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 07:09:44.995 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 14ms
+2024-11-10 07:09:45.622 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:17:37.989 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 07:26:37.356 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:32:15.509 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 07:33:25.170 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:34:03.300 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:35:12.718 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:35:13.236 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:36:11.351 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:36:11.836 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:36:30.366 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:36:30.859 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:37:19.532 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:37:20.033 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:38:36.884 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:38:37.376 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:40:58.122 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:40:58.638 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:41:44.914 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:41:45.402 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:41:50.755 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] /app 404 - 5ms
+2024-11-10 07:41:54.865 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] /app 404 - 0ms
+2024-11-10 07:41:56.279 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] /app 404 - 1ms
+2024-11-10 07:41:57.479 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:41:58.002 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:41:58.230 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:41:58.751 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:42:09.413 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:42:09.883 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:42:37.600 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:42:38.099 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:42:43.473 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] /app 404 - 0ms
+2024-11-10 07:42:48.241 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:42:48.760 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:43:52.817 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:43:53.327 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:44:18.266 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:44:18.742 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:45:14.183 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:45:14.680 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:47:13.999 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:47:14.522 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:48:30.049 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:48:30.557 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:48:50.015 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:48:50.492 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:49:35.547 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:49:36.057 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:50:23.561 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:50:24.048 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:50:49.597 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:50:50.067 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:51:11.866 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:51:12.361 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:51:45.849 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:51:46.344 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:52:21.981 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:52:22.471 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:53:07.163 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:53:07.647 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:53:13.484 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:53:14.007 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:54:51.115 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 07:54:51.607 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:55:40.851 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 07:55:41.358 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 07:56:04.547 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 07:56:05.026 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:04:31.481 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:04:32.006 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:05:08.458 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:05:08.948 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:09:42.929 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:09:43.434 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:11:12.195 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:11:12.694 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:11:50.996 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:11:51.487 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:14:06.743 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:14:07.250 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:14:30.762 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:14:31.234 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:15:55.369 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:15:55.876 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:18:59.331 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:18:59.833 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:21:14.734 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:21:15.235 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:21:19.234 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:21:19.715 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 08:21:34.033 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 08:21:34.522 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:18:11.467 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 09:18:12.051 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 09:21:37.512 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:21:38.059 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 09:22:20.064 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:22:20.560 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:23:48.922 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:23:49.424 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:24:20.879 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 09:24:21.362 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:25:04.806 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:25:05.287 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:30:28.995 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:30:29.652 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:31:44.573 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 09:31:45.100 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 09:32:35.407 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:32:35.898 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:34:27.063 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:34:27.580 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:36:34.312 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:36:34.818 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:38:52.444 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:38:52.952 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:41:47.499 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:41:48.023 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 09:41:51.050 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 09:41:51.526 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:42:26.836 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:42:27.346 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:43:21.666 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:43:22.198 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:43:32.300 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:43:32.788 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:44:12.921 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:44:13.431 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:45:14.975 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:45:15.482 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 09:47:28.193 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:47:28.705 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:52:51.879 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 09:52:52.439 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 15ms
+2024-11-10 09:53:19.650 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:53:20.141 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 09:55:40.935 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 09:55:41.473 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:55:50.859 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:55:51.344 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:55:51.513 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 09:55:52.030 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 09:56:04.249 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 09:56:04.730 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:04:34.424 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 10:04:34.981 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 10:05:34.476 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 10:05:34.986 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 10:06:11.608 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:06:12.111 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 4ms
+2024-11-10 10:06:43.058 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:06:43.599 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 10:07:06.726 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:07:07.219 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 10:08:14.192 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 10:08:14.700 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 10:13:29.158 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 10:13:29.734 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 10:14:28.670 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 10:14:29.187 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:14:56.651 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:14:57.152 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:26:26.171 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 10:26:26.703 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 10:27:02.305 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:27:02.812 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:28:24.227 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 10:28:24.772 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 10:32:32.994 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 10:32:33.561 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:35:56.216 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 2ms
+2024-11-10 10:35:56.776 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 17ms
+2024-11-10 10:36:14.345 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms
+2024-11-10 10:36:14.837 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 0ms
+2024-11-10 10:43:48.465 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 5ms
+2024-11-10 10:43:49.002 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 6ms
+2024-11-10 10:45:39.122 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 3ms
+2024-11-10 10:45:39.649 Peters-Air-2.lan INFO [synchrono.server.core:55] - [:get] / 200 - 1ms

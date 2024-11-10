@@ -99,6 +99,9 @@
                   pubkey TEXT PRIMARY KEY,
                   contract_id INTEGER NOT NULL,
                   balance INTEGER NOT NULL,
+                  lightning_address TEXT,
+                  last_payment_timestamp TIMESTAMP,
+                  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                   UNIQUE(pubkey),
                   FOREIGN KEY (contract_id) REFERENCES contracts(id))"])
 
@@ -128,3 +131,19 @@
   (jdbc/execute! datasource
                  ["CREATE INDEX IF NOT EXISTS idx_event_tags_name_value 
                  ON event_tags(tag_name, tag_value)"]))
+
+;; Track Lightning payments
+(jdbc/execute! datasource
+               ["CREATE TABLE IF NOT EXISTS lightning_payments (
+                id TEXT PRIMARY KEY,
+                account_pubkey TEXT NOT NULL,
+                contract_id INTEGER NOT NULL,
+                payment_type TEXT NOT NULL, -- 'contract_activation', 'zap', 'withdrawal'
+                amount_sat INTEGER NOT NULL,
+                payment_request TEXT,
+                payment_hash TEXT,
+                status TEXT NOT NULL, -- 'pending', 'completed', 'failed'
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                completed_at TIMESTAMP,
+                FOREIGN KEY (account_pubkey) REFERENCES accounts(pubkey),
+                FOREIGN KEY (contract_id) REFERENCES contracts(id))"])

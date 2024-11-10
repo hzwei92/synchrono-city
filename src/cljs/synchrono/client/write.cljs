@@ -1,61 +1,133 @@
 (ns synchrono.client.write
   (:require [re-frame.core :as re-frame]
-            ["@noble/hashes/sha256" :refer [sha256]]
-            ["nostr-tools/pure" :refer [signEvent]]))
+            ["@tiptap/core" :refer [Editor Extension]]
+            ["@tiptap/starter-kit" :default StarterKit]
+            ["@tiptap/pm/state" :as pm-state]
+            ["prosemirror-state" :refer [Plugin PluginKey]]
+            ["prosemirror-view" :refer [Decoration DecorationSet]]
+            [synchrono.client.nostr :as nostr]
+            [taoensso.timbre :as log]
+            [clojure.string :as str]
+            [reagent.core :as r]))
 
-(defn create-nostr-event [content public-key private-key]
-  (let [now (js/Math.floor (/ (js/Date.now) 1000))
-        event {:kind 1 ; Regular note
-               :created_at now
-               :content content
-               :tags []
-               :pubkey public-key}
-        serialized (js/JSON.stringify [0
-                                       (:pubkey event)
-                                       (:created_at event)
-                                       (:kind event)
-                                       (:tags event)
-                                       (:content event)])
-        id (sha256 serialized)
-        sig (signEvent event private-key)]
-    (assoc event :id id :sig sig)))
+(re-frame/reg-event-fx
+ :save-editor-content
+ (fn [{:keys [db]} [_ editor]]
+   (let [html (.getHTML editor)]
+     (log/info "Saving editor content:" html)
+     {:db (assoc-in db [:drafts :current-draft] html)})))
+
+
+(defn create-wiki-link [view $from]
+  (let [tr (-> (.-tr (.-state view))
+               (.delete (dec (.-pos $from)) (.-pos $from))
+               (.insertText "[[]]" (dec (.-pos $from))))]
+    (.dispatch view
+               (.setSelection tr
+                              (.near (.-constructor (.-selection (.-state view)))
+                                     (.resolve (.-doc tr)
+                                               (+ (dec (.-pos $from)) 2)))))
+    true))
+
+(defn move-cursor-right [view $from amount]
+  (let [tr (-> (.-tr (.-state view))
+               (.setSelection (.near (.-constructor (.-selection (.-state view)))
+                                     (.resolve (.-doc (.-state view))
+                                               (+ (.-pos $from) amount)))))]
+    (.dispatch view tr)
+    true))
+
+(def wiki-link-extension
+  (.create Extension
+           (clj->js
+            {:name "wikiLink"
+             :addProseMirrorPlugins
+             (fn []
+               [(new Plugin
+                     #js {:key (new PluginKey "wikiLink")
+                          :props
+                          #js {:handleKeyDown
+                               (fn [view event]
+                                 (cond
+                                   (= (.-key event) "[")
+                                   (let [state (.-state view)
+                                         doc (.-doc state)
+                                         selection (.-selection state)
+                                         $from (.-$from selection)
+                                         before (.textBetween ^js doc
+                                                              (max 0 (dec (.-pos $from)))
+                                                              (.-pos $from))]
+                                     (when (= before "[")
+                                       (log/info "wiki link detected")
+                                       (.preventDefault event)
+                                       (create-wiki-link view $from)))
+
+                                   (= (.-key event) "]")
+                                   (let [state (.-state view)
+                                         selection (.-selection state)
+                                         $from (.-$from selection)
+                                         pos (.-pos $from)
+                                         doc (.-doc state)
+                                         before-cursor (.textBetween ^js doc 0 pos)
+                                         last-open-bracket (str/last-index-of before-cursor "[[")
+                                         next-close-bracket (str/index-of before-cursor "]]" last-open-bracket)
+                                         next-char (.textBetween ^js doc pos (inc pos))]
+                                     (when (and last-open-bracket
+                                                (nil? next-close-bracket)
+                                                (= next-char "]"))
+                                       (log/info "close bracket detected")
+                                       (.preventDefault event)
+                                       (move-cursor-right view $from 1)))
+
+                                   (= (.-key event) "Tab")
+                                   (let [state (.-state view)
+                                         selection (.-selection state)
+                                         $from (.-$from selection)
+                                         pos (.-pos $from)
+                                         doc (.-doc state)
+                                         before-cursor (.textBetween ^js doc 0 pos)
+                                         last-open-bracket (str/last-index-of before-cursor "[[")
+                                         next-close-bracket (str/index-of before-cursor "]]" last-open-bracket)
+                                         next-chars (.textBetween ^js doc pos (inc (inc pos)))]
+                                     (when (and last-open-bracket
+                                                (nil? next-close-bracket)
+                                                (= next-chars "]]"))
+                                       (log/info "tab detected")
+                                       (.preventDefault event)
+                                       (move-cursor-right view $from 2)))
+
+                                   :else nil))
+                               :decorations
+                               (fn [state]
+                                 (let [decorations (atom [])
+                                       doc (.-doc state)]
+                                   (.descendants doc
+                                                 (fn [node pos]
+                                                   (when (.-isText ^js node)
+                                                     (let [text (.-text node)
+                                                           regex #"\[\[(.*?)\]\]"
+                                                           matches (re-seq regex text)]
+                                                       (doseq [[match] matches
+                                                               :let [start (+ pos (.indexOf text match))
+                                                                     end (+ start (count match))]]
+                                                         (swap! decorations conj
+                                                                (.inline Decoration start end
+                                                                         #js {:class "wiki-link"})))))))
+                                   (.create DecorationSet doc (clj->js @decorations))))}})])})))
+
+(defn create-editor [el]
+  (new Editor
+       (clj->js
+        {:element el
+         :extensions #js [StarterKit wiki-link-extension]
+         :autofocus true
+         :editable true
+         :onUpdate (fn [^js props]
+                     (let [editor (.-editor props)]
+                       (re-frame/dispatch [:save-editor-content editor])))})))
 
 (defn write []
-  (let [current-draft-content (re-frame/subscribe [:current-draft-content])
-        current-keypair-private-key (re-frame/subscribe [:current-keypair-private-key])]
-    [:div.write
-     [:div.title "write"]
-     [:div.editor
-      [:textarea.editor-textarea
-       {:value @current-draft-content
-        :on-change #(re-frame/dispatch [:set-current-draft-content (-> % .-target .-value)])
-        :placeholder (str "Write one good sentence.\n"
-                          "Then write another.\n"
-                          "Don't spend time re-explaining what you already know.\n"
-                          "You are your first audience.\n"
-                          "What is useful to you in this very moment?\n"
-                          "What do you feel?")}]
-      [:div.controls
-       [:button.action-button
-        {:on-click #(re-frame/dispatch [:save-post @current-draft-content @current-keypair-private-key])
-         :disabled (empty? @current-keypair-private-key)
-         :style {:margin-top "10px"}}
-        "Save"]]]]))
-
-(re-frame/reg-event-fx
- :set-current-draft-content
- (fn [{:keys [db]} [_ content]]
-   {:db (assoc-in db [:drafts :current-draft-content] content)}))
-
-(re-frame/reg-event-fx
- :save-post
- (fn [{:keys [db]} [_ content public-key private-key]]
-   (let [event (create-nostr-event content public-key private-key)]
-     {:ws-send {:event event}
-      :db (-> db
-              (assoc-in [:drafts :current-draft-content] ""))})))
-
-(re-frame/reg-sub
- :current-draft-content
- (fn [db]
-   (get-in db [:drafts :current-draft-content])))
+  [:div
+   [:div.title "write"]
+   [:div#editor {:ref (fn [el]
+                        (when el (create-editor el)))}]])

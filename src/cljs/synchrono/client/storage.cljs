@@ -10,8 +10,7 @@
 (def default-app-db
   {:message nil
    :error nil
-   :posting false
-   :getting false
+   :publishing? false
    :current-route :about
    :menu-open? false})
 
@@ -65,17 +64,26 @@
    :daily-fee-sat 100                  ; Daily cost in satoshis
    :timezone "UTC-08:00"})
 
-;; Contract state management
-(def default-contracts-db
-  {:current-contract default-contract
-   :new-contract? false
-   :my-contracts? false
-   :available-contracts? true})
-
 ;; Posts/drafts state
 (def default-drafts-db
-  {:current-draft-content ""
+  {:editor nil
+   :current-draft nil
    :drafts []})
+
+;; Lightning wallet state
+(def default-lightning-db
+  {:provider nil
+   :connecting? false
+   :last-payment nil})
+
+;; Add subscription state to default database
+(def default-subscription-db
+  {:step :initial
+   :loading? false
+   :active? false
+   :expiry nil
+   :payment-amount 100000  ; in sats
+   :duration-days 1000})
 
 ;; Complete application database schema
 (def default-db
@@ -83,8 +91,16 @@
    :keys default-keys-db
    :relays default-relays-db
    :events default-events-db
-   :contracts default-contracts-db
-   :drafts default-drafts-db})
+   :drafts default-drafts-db
+   :lightning default-lightning-db
+   :subscription default-subscription-db})
+
+;; Add after default-contract definition
+(def default-contracts-db
+  {:current-contract default-contract
+   :new-contract? false
+   :my-contracts? false
+   :available-contracts? false})
 
 ;; ======================
 ;; Database Initialization
@@ -118,10 +134,10 @@
                          (let [parsed (.parse js/JSON (.getItem js/localStorage "relays"))
                                parsed-array (js->clj parsed :keywordize-keys true)]
                            (if (sequential? parsed-array)
-                             parsed-array
-                             []))
+                             (conj parsed-array {:url "/"})
+                             [{:url "/"}]))
                          (catch :default _
-                           []))]
+                           [{:url "/"}]))]
      {:db (-> db
               (assoc-in [:keys :keypairs-list] stored-keypairs)
               (assoc-in [:relays :relays-list] stored-relays))

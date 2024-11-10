@@ -3,7 +3,7 @@
             [synchrono.client.about :refer [about]]
             [synchrono.client.keys :refer [keys-view]]
             [synchrono.client.relays :refer [relays]]
-            [synchrono.client.contracts :refer [contracts]]
+            [synchrono.client.subscriptions :refer [subscriptions]]
             [synchrono.client.write :refer [write]]
             [synchrono.client.read :refer [read]]))
 
@@ -14,10 +14,10 @@
        :about [about]
        :keys [keys-view]
        :relays [relays]
-       :contracts [contracts]
+       :subscriptions [subscriptions]
        :write [write]
        :read [read]
-       [about])])) ; Default to about page
+       [:div "404"])])) ; Default to about page
 
 
 (re-frame/reg-sub

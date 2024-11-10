@@ -17,11 +17,7 @@
                  [org.bitcoinj/bitcoinj-core "0.16.2"]
                  [com.google.code.gson/gson "2.10.1"]
                  [org.projectlombok/lombok "1.18.32"]
-                 [com.taoensso/timbre "6.5.0"]
-                 [io.grpc/grpc-netty-shaded "1.61.1"]
-                 [io.grpc/grpc-protobuf "1.61.1"]
-                 [io.grpc/grpc-stub "1.61.1"]
-                 [org.lightningj/lnd-grpc-client "0.6.2-Beta"]]
+                 [com.taoensso/timbre "6.5.0"]]
   :source-paths ["src/clj"]
   :main ^:skip-aot synchrono.server.core
   :target-path "target/%s"

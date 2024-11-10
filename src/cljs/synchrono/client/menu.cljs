@@ -3,14 +3,12 @@
 
 (defn menu []
   (let [menu-open? (re-frame/subscribe [:menu-open?])]
-    (when @menu-open?
-      [:div.menu
-       [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :about])} "about"]
-       [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :keys])} "keypairs"]
-       [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :relays])} "relays"]
-       [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :contracts])} "contracts"]
-       [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :write])} "write"]
-       [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :read])} "read"]])))
+    [:div.menu {:class (when-not @menu-open? "closed")}
+     [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :about])} "about"]
+     [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :keys])} "keypairs"]
+     [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :relays])} "relays"]
+     [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :write])} "write"]
+     [:button.menu-button {:on-click #(re-frame/dispatch [:set-current-route :read])} "read"]]))
 
 (re-frame/reg-event-db
  :toggle-menu
