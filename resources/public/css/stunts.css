@@ -1,0 +1,445 @@
+/* Base styles */
+:root {
+    --bg-color: #090909;
+    --text-color: azure;
+    --link-color: #6ea8fe;
+    --border-color: #b9b9b9;
+    --header-height: 60px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden; 
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input, textarea, button {
+    background-color: #2d2d2d;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 2px;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    transition: transform 0.1s, opacity 0.1s;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    min-width: 400px;
+    overflow: hidden; /* Prevent app scrolling */
+}
+
+.appbar {
+    height: var(--header-height);
+    background: #242424;
+    display: flex;
+    justify-content: space-between;
+}
+
+.appbar-left {
+    display: flex;
+}
+
+.appbar-right {
+    display: flex;
+}
+
+.appbar-button {
+    background: #242424;
+    border: none;
+    padding-left: 14px;
+    padding-right: 14px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.appbar-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.appbar-button:active {
+    transform: scale(0.95);
+}
+
+.appbar-title {
+    color: white;
+    padding: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.appbar-public-key {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: darkturquoise;
+    border: none;
+    font-size: 18px;
+    margin: auto 10px;;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s, transform 0.1s;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+.appbar-public-key:hover {
+    background-color: rgba(0, 206, 209, 0.1);
+}
+
+.appbar-public-key:active {
+    transform: scale(0.95);
+}
+
+.generate-keypair-button {
+    background: var(--bg-color);
+    border: 1px solid darkturquoise;
+    color: darkturquoise;
+    padding: 10px;
+    border-radius: 4px;
+    margin: auto 10px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.generate-keypair-button:hover {
+    background-color: rgba(0, 206, 209, 0.1);
+}
+
+.generate-keypair-button:active {
+    transform: scale(0.95);
+}
+
+.login {
+    position: absolute;
+    top: var(--header-height);
+    right: 0px;
+    z-index: 1000;
+    background: #242424;
+    padding: 10px;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 240px;
+}
+
+.keypair-menu {
+    position: absolute;
+    top: var(--header-height);
+    right: 0px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    background: #242424;
+    padding: 10px;
+    gap: 10px;
+    width: 240px;
+}
+
+.public-key-button {
+    background: var(--bg-color);
+    border: 1px solid darkturquoise;
+    color: darkturquoise;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 0px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.public-key-button:hover {
+    background-color: rgba(0, 206, 209, 0.1);
+}
+
+.public-key-button:active {
+    transform: scale(0.95);
+}
+
+.nostr-event-button {
+    background: var(--bg-color);
+    border: 1px solid orange;
+    color: orange;
+    margin: 0px;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.nostr-event-button:hover {
+    background-color: rgba(255, 140, 0, 0.1);
+}
+
+.nostr-event-button:active {
+    transform: scale(0.95);
+}
+
+.nostr-relay-button {
+    background: var(--bg-color);
+    border: 1px solid orchid;
+    color: orchid;
+    margin: 0px;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.nostr-relay-button:hover {
+    background-color: rgba(218, 112, 214, 0.1);
+}
+
+.nostr-relay-button:active {
+    transform: scale(0.95);
+}
+
+
+.outline-button {
+    background: #242424;
+    border: 1px solid var(--border-color);
+    margin: 0px;
+    padding: 10px;
+    border-radius: 4px;
+    opacity: 0.8;
+    transition: background-color 0.2s, opacity 0.2s, transform 0.1s;
+}
+
+.outline-button:hover {
+    background-color: rgba(185, 185, 185, 0.1);
+    opacity: 1;
+}
+
+.outline-button:active {
+    transform: scale(0.95);
+}
+
+
+.body {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - var(--header-height));
+}
+
+.menu {
+    width: 320px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    z-index: 100;
+    background-color: #191919;
+    position: fixed;
+    @media (min-width: 700px) {
+        position: relative;
+    }
+}
+
+
+.closed {
+    display: none;
+    @media (min-width: 700px) {
+        display: flex;
+    }
+}
+
+.map {
+    height: 320px;
+}
+
+.mapboxgl-ctrl {
+    display: none !important; 
+}
+
+.prompt {
+    color: white;
+    padding: 14px;
+    opacity: 0.9;
+}
+
+.relays {
+    margin: 5px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.relay-item {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    border: 1px solid orchid;
+    border-radius: 2px;
+}
+
+.relay-url {
+    color: orchid;
+    text-decoration: underline;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: monospace;
+}
+
+.relay-metadata {
+    font-size: 12px;
+    padding: 5px;
+    padding-top: 0px;
+}
+
+.relay-name {
+    font-weight: bold;
+}
+.relay-description {
+    opacity: 0.8;
+}
+
+.add-relays-form {
+    margin: 10px;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.composer-body {
+    background: black;
+    height: 320px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.composer-controls {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    padding: 5px;
+    padding-top: 2px;
+    justify-content: space-between;
+}
+
+.kind {
+    color: darkgray;
+    font-size: 14px;
+    padding: 5px;
+    font-family: monospace;
+}
+
+.geolocation {
+    color: darkgray;
+    font-size: 14px;
+    padding: 5px;
+    font-family: monospace;
+}
+
+.timestamp {
+    color: darkgray;
+    font-size: 14px;
+    padding: 5px;
+    font-family: monospace;
+}
+
+.editor {
+    margin: 10px;
+    height: 100%;
+    position: relative;
+}
+
+.query {
+    position: relative;
+    color: white;
+    background: black;
+    border: 2px solid dimgray;
+    padding: 5px;
+    border-radius: 4px;
+    margin-left: -5px;
+}
+
+.recents {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.recents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+    height: 100%;
+    padding: 5px;
+}
+
+.event-item {
+    border: 1px solid orange;
+    border-radius: 2px;
+    padding: 10px;
+    background: black;
+}
+
+.event-id {
+    color: orange;
+    font-family: monospace;
+}
+
+.event-pubkey {
+    color: darkturquoise;
+    font-family: monospace;
+}
+
+.event-relays {
+    color: orchid;
+    font-family: monospace;
+}
+
+.event-kind {
+    color: darkgray;
+    font-family: monospace;
+}
+.event-timestamp {
+    color: darkgray;
+    font-family: monospace;
+}
+.event-geohash {
+    color: darkgray;
+    font-family: monospace;
+}
+
+.event-content {
+    white-space: pre-wrap;
+    color: white;
+}

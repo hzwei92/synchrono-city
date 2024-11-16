@@ -1,6 +1,7 @@
 goog.provide('synchrono.client.crypto');
 var module$node_modules$aes_js$index=shadow.js.require("module$node_modules$aes_js$index", {});
 var module$node_modules$$noble$hashes$sha256=shadow.js.require("module$node_modules$$noble$hashes$sha256", {});
+var module$node_modules$nostr_tools$lib$cjs$index=shadow.js.require("module$node_modules$nostr_tools$lib$cjs$index", {});
 /**
  * Converts a byte array to a hex string.
  * Each byte is converted to a 2-digit hex number and concatenated.
@@ -27,14 +28,14 @@ return (new Uint8Array((0)));
 var clean_hex = clojure.string.replace(hex,/[^0-9a-fA-F]/,"");
 var byte_length = (clean_hex.length / (2));
 var byte_array = (new Uint8Array(byte_length));
-var n__5593__auto___13439 = byte_length;
-var i_13440 = (0);
+var n__5593__auto___19669 = byte_length;
+var i_19670 = (0);
 while(true){
-if((i_13440 < n__5593__auto___13439)){
-(byte_array[i_13440] = parseInt(clean_hex.slice((i_13440 * (2)),((i_13440 * (2)) + (2))),(16)));
+if((i_19670 < n__5593__auto___19669)){
+(byte_array[i_19670] = parseInt(clean_hex.slice((i_19670 * (2)),((i_19670 * (2)) + (2))),(16)));
 
-var G__13441 = (i_13440 + (1));
-i_13440 = G__13441;
+var G__19671 = (i_19670 + (1));
+i_19670 = G__19671;
 continue;
 } else {
 }
@@ -66,8 +67,7 @@ return crypto.getRandomValues((new Uint8Array((16))));
  * Returns hex string of concatenated IV and ciphertext.
  */
 synchrono.client.crypto.encrypt = (function synchrono$client$crypto$encrypt(data,password){
-var encoder = (new TextEncoder());
-var data_bytes = ((typeof data === 'string')?encoder.encode(data):data);
+var data_bytes = ((typeof data === 'string')?synchrono.client.crypto.hex_to_bytes(data):data);
 var key = synchrono.client.crypto.derive_key(password);
 var iv = synchrono.client.crypto.generate_nonce();
 var aes_ctr = (new module$node_modules$aes_js$index.ModeOfOperation.ctr(key,iv));
@@ -82,7 +82,7 @@ return synchrono.client.crypto.bytes_to_hex(combined);
 /**
  * Decrypts a hex string using AES-CTR mode.
  * Expects concatenated IV and ciphertext.
- * Returns decrypted bytes or nil if decryption fails.
+ * Returns decrypted bytes as Uint8Array or nil if decryption fails.
  */
 synchrono.client.crypto.decrypt = (function synchrono$client$crypto$decrypt(encrypted_hex,password){
 var combined_bytes = synchrono.client.crypto.hex_to_bytes(encrypted_hex);
@@ -90,11 +90,16 @@ var iv = (new Uint8Array(combined_bytes.slice((0),(16))));
 var ciphertext = (new Uint8Array(combined_bytes.slice((16))));
 var key = synchrono.client.crypto.derive_key(password);
 var aes_ctr = (new module$node_modules$aes_js$index.ModeOfOperation.ctr(key,iv));
-try{return aes_ctr.decrypt(ciphertext);
-}catch (e13438){var e = e13438;
+try{return (new Uint8Array(aes_ctr.decrypt(ciphertext)));
+}catch (e19668){var e = e19668;
 console.error("Decryption failed:",e);
 
 return null;
 }});
+synchrono.client.crypto.generate_keypair = (function synchrono$client$crypto$generate_keypair(){
+var private_key_bytes = module$node_modules$nostr_tools$lib$cjs$index.generateSecretKey();
+var public_key = module$node_modules$nostr_tools$lib$cjs$index.getPublicKey(private_key_bytes);
+return new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"public-key","public-key",-2106850051),public_key,new cljs.core.Keyword(null,"private-key","private-key",426483388),synchrono.client.crypto.bytes_to_hex(private_key_bytes),new cljs.core.Keyword(null,"private-key-bytes","private-key-bytes",381285272),private_key_bytes], null);
+});
 
 //# sourceMappingURL=synchrono.client.crypto.js.map

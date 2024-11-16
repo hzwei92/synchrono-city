@@ -1,9 +1,10 @@
 /* Base styles */
 :root {
     --bg-color: #1a1a1a;
-    --text-color: #e0e0e0;
+    --text-color: azure;
     --link-color: #6ea8fe;
     --border-color: #b9b9b9;
+    --header-height: 50px;
 }
 
 body {
@@ -17,15 +18,10 @@ body {
     min-width: 100vw;
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     overflow: hidden; 
-}
-
-p {
-    margin: 10px 0;
-    line-height: 1.2;
 }
 
 li {
@@ -64,18 +60,9 @@ button:hover {
 #app {
     width: 100%;
     height: 100%;
-    max-width: 600px;
     min-width: 400px;
     margin: 0 auto;
     overflow: hidden; /* Prevent app scrolling */
-    @media (min-width: 800px) {
-        max-width: 800px;
-    }
-}
-.wiki-link {
-    color: orange;
-    text-decoration: underline;
-    cursor: pointer;
 }
 
 .error {
@@ -103,17 +90,9 @@ button:hover {
     border: 1px solid var(--border-color);
 }
 
-.app-view {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Prevent app-view scrolling */
-}
-
 .header {
     top: 0;
-    height: 60px;
+    height: var(--header-height);
     width: 100%;
     background-color: #252525;
     display: flex;
@@ -131,7 +110,7 @@ button:hover {
     padding-inline: 20px;
     font-size: 22px;
     color: orange;
-    @media (min-width: 800px) {
+    @media (min-width: 700px) {
         display: none;
     }
 }
@@ -143,7 +122,7 @@ button:hover {
     font-size: 22px;
     margin-left: 2px;
     color: orange;
-    @media (min-width: 800px) {
+    @media (min-width: 700px) {
         margin-left: 15px;
     }
 }
@@ -170,8 +149,7 @@ button:hover {
 }
 
 .menu {
-    background-color: #1a1a1a;
-    width: 120px;
+    width: 240px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -179,17 +157,19 @@ button:hover {
     line-height: 1.4;
     z-index: 100;
     position: fixed;
-    @media (min-width: 800px) {
+    background-color: #1c1c1c;
+    @media (min-width: 700px) {
         position: relative;
     }
 }
 
 .closed {
     display: none;
-    @media (min-width: 800px) {
+    @media (min-width: 700px) {
         display: flex;
     }
 }
+
 .menu-button {
     text-align: left;
     padding: 10px 14px;
@@ -198,16 +178,7 @@ button:hover {
     font-weight: inherit;
 }
 
-.body {
-    z-index: 1;
-    flex: 1;
-    padding: 30px 40px;
-    font-size: 16px;
-    background-color: #111111;
-    overflow-y: scroll;
-    height: calc(100vh - 110px); /* Subtract header height */
-    position: relative; /* Enable proper scrolling */
-}
+
 
 .active {
     color: #ffffff;
@@ -253,197 +224,145 @@ button:hover {
     margin-bottom: 10px;
 }
 
+.keys {
+    padding: 15px;
+}
 .no-keypairs {
     margin: 10px 0;
     height: 1px;
     background-color: var(--border-color);
 }
 
-
 .keypair-name {
     margin-bottom: 2px;
 }
 
-.editor-textarea {
-    width: calc(100% - 20px);
-    min-height: 100px;
-}
-
-.contract-form {
-    margin-top: 10px;
-    margin-bottom: 100px;
-}
-
-.form-group {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.contract-about {
-    min-height: 200px;
-}   
-
-.contracts-menu {
-    display: flex;
-    flex-direction: row;
-}
-
-.contracts-menu-item {
-    margin-right: 5px;
-}
 .hilighted {
     background-color: orange;
     color: black;
 }
-.plans {
-    display: flex;
-    flex-direction: row;
+
+.relays {
+    padding: 15px;
 }
 
-.plan {
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
+.body {
+    z-index: 1;
+    flex: 1;
+    font-size: 16px;
+    background-color: #111111;
+    height: calc(100vh - var(--header-height)); /* Subtract header height */
+    width: 100%;
+    position: relative; /* Enable proper scrolling */
+}
+
+.draft {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor {
+    background-color: #060606;
+    position: relative;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.editor-main {
+    margin: 10px;
+    height: calc(100% - 20px);
+}
+
+.draft-buttons {
+    background-color: #060606;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 10px;
 }
 
-.editor {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 20px;
-  margin: 20px 0;
+.draft-options {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px;
+    background-color: #141414;
+    flex-shrink: 0;
 }
 
-.editor-content {
-  min-height: 200px;
-  padding: 10px;
+.surveyor {
+    overflow-y: scroll;
 }
 
-.ProseMirror {
-  outline: none;
+.surveyor-events {
+    background-color: #141414;
+    display: flex;
+    flex-direction: column;
 }
 
-.ProseMirror p.is-editor-empty:first-child::before {
-  color: #adb5bd;
-  content: attr(data-placeholder);
-  float: left;
-  height: 0;
-  pointer-events: none;
+.query {
+    position: relative;
+    color: white;
+    background: black;
+    border: 1px solid dimgray;
+    padding: 5px;
+    border-radius: 4px;
+    margin-left: -5px;
 }
 
-/* Optional: Style the content */
-.ProseMirror {
-  > * + * {
-    margin-top: 0.75em;
-  }
-
-  h1 {
-    font-size: 2em;
-    font-weight: bold;
-  }
-
-  h2 {
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-
-  code {
-    background-color: #f3f3f3;
-    border-radius: 3px;
-    padding: 0.2em 0.4em;
-  }
-
-  pre {
-    background: #0d0d0d;
-    border-radius: 0.5rem;
-    color: #fff;
-    padding: 0.75rem 1rem;
-    
-    code {
-      background: none;
-      color: inherit;
-      padding: 0;
-    }
-  }
-
-  ul, ol {
-    padding: 0 1rem;
-  }
+.suggestions {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    color: darkblue;
+    background: lightcyan;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 5px;
 }
 
-.menu-bar {
-  padding: 5px;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
+.event {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin: 10px;
+    margin-top: 0;
+    color: white;
+    background: #060606;
+    border: 1px solid orange;
+    white-space: pre-wrap;
 }
 
-.menu-item {
-  margin-right: 5px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  background: white;
-  cursor: pointer;
+.event-id {
+    color: orange;
 }
 
-.menu-item.is-active {
-  background: #eee;
+.event-pubkey {
+    color: darkturquoise;
 }
 
-.write-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+.event-timestamp {
+    opacity: 0.5;
 }
 
-.editor {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 20px;
+.event-kind {
+    opacity: 0.5;
 }
 
-.editor-content {
-  padding: 15px;
-  min-height: 200px;
+.event-content {
+
 }
 
-.save-button {
-  padding: 8px 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.event-tag {
+    opacity: 0.5;
 }
 
-.save-button:hover {
-  background-color: #45a049;
-}
-
-.double-brackets {
-  background-color: rgba(0, 0, 255, 0.1);
-  border-radius: 3px;
-  padding: 2px 4px;
-}
-
-.double-brackets:hover {
-  background-color: rgba(0, 0, 255, 0.2);
-  cursor: pointer;
-}
-
-.ProseMirror {
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-height: 200px;
-}
-
-.ProseMirror:focus {
-  outline: none;
-  border-color: #4a9eff;
-}
-
-.wiki-link {
-  color: #4a9eff;
-  text-decoration: underline;
+.prompt {
+    padding: 10px;
+    opacity: 0.5;
+    font-size: 14px;
 }

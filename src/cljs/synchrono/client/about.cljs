@@ -1,6 +1,6 @@
 (ns synchrono.client.about)
 
-(defn about []
+(defn about-view []
   [:div.about
    [:div.title "about"]
    [:p "Welcome to a new kind of journal - where we write together, every day."]

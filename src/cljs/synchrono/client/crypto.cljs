@@ -3,6 +3,7 @@
    Uses AES-CTR for symmetric encryption and Nostr key pairs for asymmetric."
   (:require ["aes-js" :as aes]
             ["@noble/hashes/sha256" :refer [sha256]]
+            ["nostr-tools" :refer [generateSecretKey getPublicKey]]
             [clojure.string :as str]))
 
 ;; -------------------------
@@ -58,9 +59,8 @@
    Data can be either a string or byte array.
    Returns hex string of concatenated IV and ciphertext."
   [data password]
-  (let [encoder (js/TextEncoder.)
-        data-bytes (if (string? data)
-                    (.encode encoder data)
+  (let [data-bytes (if (string? data)
+                    (hex-to-bytes data)  ;; Convert hex string to bytes
                     data)
         key (derive-key password)
         iv (generate-nonce)
@@ -74,7 +74,7 @@
 (defn decrypt
   "Decrypts a hex string using AES-CTR mode.
    Expects concatenated IV and ciphertext.
-   Returns decrypted bytes or nil if decryption fails."
+   Returns decrypted bytes as Uint8Array or nil if decryption fails."
   [encrypted-hex password]
   (let [combined-bytes (hex-to-bytes encrypted-hex)
         iv (js/Uint8Array. (.slice combined-bytes 0 16))
@@ -82,7 +82,14 @@
         key (derive-key password)
         aes-ctr (aes/ModeOfOperation.ctr. key iv)]
     (try
-      (.decrypt aes-ctr ciphertext)
+      (js/Uint8Array. (.decrypt aes-ctr ciphertext))
       (catch :default e
         (js/console.error "Decryption failed:" e)
         nil))))
+
+(defn generate-keypair []
+  (let [private-key-bytes (generateSecretKey)
+        public-key (getPublicKey private-key-bytes)]
+    {:public-key public-key
+     :private-key (bytes-to-hex private-key-bytes)
+     :private-key-bytes private-key-bytes}))

@@ -1,0 +1,12 @@
+{
+  ;; Specify namespaces that clj-kondo should treat as defining components
+  :namespaces [:reagent.core]
+
+  ;; Optionally, you can add custom linters or exclude certain warnings
+  :linters {:unused-public-vars {:level :warn}
+            ; Add other linter configurations as needed
+           }
+
+  ;; Ensure that macros from Reagent are recognized
+  :require-macros [:reagent.core]
+} 

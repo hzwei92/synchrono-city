@@ -10,9 +10,15 @@
 (def default-app-db
   {:message nil
    :error nil
-   :publishing? false
-   :current-route :about
-   :menu-open? false})
+   :current-route :home
+   :menu-open? false
+   :prompt-open? false})
+
+;; Lightning wallet state
+(def default-lightning-db
+  {:provider nil
+   :connecting? false
+   :last-payment nil})
 
 ;; User key management state - keypairs, passwords, verification
 (def default-keys-db
@@ -47,60 +53,21 @@
   {:events-by-id {}
    :event-ids-by-kind {}})
 
-;; Contract configuration - defines membership rules and costs
-(def default-contract
-  {:id nil
-   :name "synchrono.city"
-   :about (str
-           "Everyone buys in for 100,000 satoshis by sending 0.001 BTC to me. "
-           "\nTransfer satoshis to other people by upvoting their entries. "
-           "\nWe each pay dues of 100 satoshis per day, so you better start hustling! "
-           "\nCash out any time; I will send BTC to you. "
-           "\nSo long as you leave enough satoshis to pay for 1 week of dues. "
-           "\nWin big in this marketplace for ideas! ")
-   :picture "https://synchrono.city/JAMN.png"
-   :initial-credit-balance-sat 100000  ; Initial balance in satoshis
-   :minimum-withdrawal-sat 7000        ; Minimum required balance
-   :daily-fee-sat 100                  ; Daily cost in satoshis
-   :timezone "UTC-08:00"})
-
-;; Posts/drafts state
 (def default-drafts-db
-  {:editor nil
-   :current-draft nil
-   :drafts []})
-
-;; Lightning wallet state
-(def default-lightning-db
-  {:provider nil
-   :connecting? false
-   :last-payment nil})
-
-;; Add subscription state to default database
-(def default-subscription-db
-  {:step :initial
-   :loading? false
-   :active? false
-   :expiry nil
-   :payment-amount 100000  ; in sats
-   :duration-days 1000})
+  {:doc nil
+   :selection nil
+   :tags []
+   :query ""
+   :reset? false})
 
 ;; Complete application database schema
 (def default-db
   {:app default-app-db
+   :lightning default-lightning-db
    :keys default-keys-db
    :relays default-relays-db
    :events default-events-db
-   :drafts default-drafts-db
-   :lightning default-lightning-db
-   :subscription default-subscription-db})
-
-;; Add after default-contract definition
-(def default-contracts-db
-  {:current-contract default-contract
-   :new-contract? false
-   :my-contracts? false
-   :available-contracts? false})
+   :drafts default-drafts-db})
 
 ;; ======================
 ;; Database Initialization
@@ -123,25 +90,22 @@
    (let [stored-keypairs (try
                            (let [parsed (.parse js/JSON (.getItem js/localStorage "keypairs"))
                                  parsed-array (js->clj parsed :keywordize-keys true)]
-                             (if (sequential? parsed-array)
-                               (filterv #(= (set (keys (first (:keypairs-list default-keys-db))))
-                                            (set (keys %)))
-                                        parsed-array)
-                               []))
+                             parsed-array)
                            (catch :default _
                              []))
          stored-relays (try
                          (let [parsed (.parse js/JSON (.getItem js/localStorage "relays"))
                                parsed-array (js->clj parsed :keywordize-keys true)]
-                           (if (sequential? parsed-array)
-                             (conj parsed-array {:url "/"})
+                           (if (seq? parsed-array)
+                             parsed-array
                              [{:url "/"}]))
                          (catch :default _
                            [{:url "/"}]))]
      {:db (-> db
               (assoc-in [:keys :keypairs-list] stored-keypairs)
               (assoc-in [:relays :relays-list] stored-relays))
-      :dispatch [:nostr-connect-to-relays]})))
+      :dispatch-n [[:nostr/fetch-relay-metadata]
+                   [:nostr/subscribe-many [{:kind [0 1]}] false]]})))
 
 ;; Save keypairs to localStorage when updated
 (re-frame/reg-event-fx

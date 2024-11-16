@@ -1,8 +1,7 @@
 (ns synchrono.client.relays
   "Relay management namespace - handles UI and events for managing relay connections"
-  (:require [re-frame.core :as re-frame]
-            [synchrono.client.nostr :as nostr]
-            [ajax.core :as ajax]
+  (:require [re-frame.core :as rf]
+            [synchrono.client.nostrodamus :as nostr]
             [taoensso.timbre :as log]
             [clojure.string :as str]))
 
@@ -10,17 +9,17 @@
 ;; Subscriptions
 ;; ======================
 
-(re-frame/reg-sub
+(rf/reg-sub
  :relays-list
  (fn [db]
    (get-in db [:relays :relays-list])))
 
-(re-frame/reg-sub
+(rf/reg-sub
  :new-relay-url
  (fn [db]
    (get-in db [:relays :new-relay-url])))
 
-(re-frame/reg-sub
+(rf/reg-sub
  :removing-relay-url
  (fn [db]
    (get-in db [:relays :removing-relay-url])))
@@ -29,22 +28,12 @@
 ;; Event Handlers
 ;; ======================
 
-(re-frame/reg-event-fx
- :nostr-connect-to-relays
- (fn [{:keys [db]} _]
-   (let [relays-list (get-in db [:relays :relays-list])]
-     (log/debug "Fetching relay metadata for" relays-list)
-     (doseq [relay relays-list]
-       (log/debug "Fetching relay metadata for" (:url relay))
-       (nostr/fetch-relay-metadata (:url relay)))
-     {:db db})))
-
-(re-frame/reg-event-db
+(rf/reg-event-db
  :set-removing-relay-url
  (fn [db [_ url]]
    (assoc-in db [:relays :removing-relay-url] url)))
 
-(re-frame/reg-event-fx
+(rf/reg-event-fx
  :add-relay
  (fn [{:keys [db]} _]
    (let [new-relay-url (get-in db [:relays :new-relay-url])]
@@ -64,10 +53,10 @@
                   (assoc-in [:relays :new-relay-url] "")
                   (assoc-in [:app :message] "Relay added successfully"))
           :dispatch-n [[:save-relays-to-local-storage]
-                      [:nostr-connect-to-relays]]
+                       [:nostr-connect-to-relays]]
           :fx [[:dispatch [:fetch-relay-info new-relay-url]]]})))))
 
-(re-frame/reg-event-fx
+(rf/reg-event-fx
  :remove-relay
  (fn [{:keys [db]} [_ relay]]
    (let [relays-list (get-in db [:relays :relays-list])
@@ -79,31 +68,31 @@
       :dispatch-n [[:save-relays-to-local-storage]
                   [:nostr-connect-to-relays]]})))
 
-(re-frame/reg-event-db
+(rf/reg-event-db
  :set-new-relay-url
  (fn [db [_ url]]
    (assoc-in db [:relays :new-relay-url] url)))
 
-(re-frame/reg-event-db
+(rf/reg-event-db
  :relay-info-success
  (fn [db [_ url info]]
    (log/debug "Received relay info:" info)
    (update-in db [:relays :relays-list]
               (fn [relays]
                 (map #(if (= (:url %) url)
-                       (assoc % :info info)
-                       %)
+                        (assoc % :info info)
+                        %)
                      relays)))))
 
-(re-frame/reg-event-db
+(rf/reg-event-db
  :relay-info-error
  (fn [db [_ url error]]
    (log/warn "Failed to fetch relay info:" error)
    (update-in db [:relays :relays-list]
               (fn [relays]
                 (map #(if (= (:url %) url)
-                       (assoc % :info-error (str error))
-                       %)
+                        (assoc % :info-error (str error))
+                        %)
                      relays)))))
 
 ;; ======================
@@ -162,14 +151,14 @@
        [:div.row.error
         [:span "Error: " error]])]))
 
-(defn relays
+(defn relays-view
   "Main relay management component. Shows list of relays and allows adding/removing."
   []
-  (let [relays-list (re-frame/subscribe [:relays-list])
-        message (re-frame/subscribe [:message])
-        error (re-frame/subscribe [:error])
-        new-relay-url (re-frame/subscribe [:new-relay-url])
-        removing-relay-url (re-frame/subscribe [:removing-relay-url])]
+  (let [relays-list (rf/subscribe [:relays-list])
+        message (rf/subscribe [:message])
+        error (rf/subscribe [:error])
+        new-relay-url (rf/subscribe [:new-relay-url])
+        removing-relay-url (rf/subscribe [:removing-relay-url])]
     [:div.relays
      [:div.title "relays"]
      [:p "Publish and subscribe to multiple relays. " "If some fail, the data may still be accessible via the others."]
@@ -189,19 +178,19 @@
               [:div
              [:div.row "Are you sure you want to remove this relay?"]
              [:button.danger-button
-              {:on-click #(re-frame/dispatch [:remove-relay relay])}
+              {:on-click #(rf/dispatch [:remove-relay relay])}
               "Remove"]
              [:button.content-button
-                  {:on-click #(re-frame/dispatch [:set-removing-relay-url nil])}
-                  "Cancel"]]
+              {:on-click #(rf/dispatch [:set-removing-relay-url nil])}
+              "Cancel"]]
               [:button.danger-button
-               {:on-click #(re-frame/dispatch [:set-removing-relay-url (:url relay)])}
-             "Remove"]))]))]
+               {:on-click #(rf/dispatch [:set-removing-relay-url (:url relay)])}
+               "Remove"]))]))]
      [:div.row
       [:input {:type "text"
                :value @new-relay-url
                :placeholder "wss://relay.example.com"
-               :on-change #(re-frame/dispatch [:set-new-relay-url (.. % -target -value)])}]]
+               :on-change #(rf/dispatch [:set-new-relay-url (.. % -target -value)])}]]
      [:div.row
       (when @error
         [:div.error @error])
@@ -209,5 +198,5 @@
         [:div.message @message])]
      [:div.row
       [:button.action-button
-       {:on-click #(re-frame/dispatch [:add-relay])}
+       {:on-click #(rf/dispatch [:add-relay])}
        "Add Relay"]]]))

@@ -3,37 +3,39 @@
    Handles initialization and mounting of the main React components.
    Daily journaling club ain't easy."
   (:require ["react-dom/client" :as rdc]
-            [re-frame.core :as re-frame]
+            [re-frame.core :as rf]
             [reagent.core :as r]
-            [synchrono.client.header :refer [header]]
+            [synchrono.client.appbar :refer [appbar]]
             [synchrono.client.menu :refer [menu]]
-            [synchrono.client.body :refer [body]]
-            [synchrono.client.storage]
-            [synchrono.client.logging :as logging]
+            [synchrono.client.composer :refer [composer]]
+            [synchrono.client.surveyor :refer [surveyor]]
+            [synchrono.client.recents :refer [recents]]
+            [synchrono.client.db]
+            [synchrono.client.logging :refer [init-logging!]]
             [taoensso.timbre :as log]))
 
 ;; Main application view component
-(defn app-view []
-  [:div.app-view
-   [header]
-   [:div.panel
+(defn app []
+  [:div
+   [appbar]
+   [:div.body
     [menu]
-    [body]]])
+    [:div.main
+     [composer]
+     [recents]]]])
 
 ;; Mounts the root React component to the DOM
 (defn mount-root []
-  (re-frame/clear-subscription-cache!)
+  (rf/clear-subscription-cache!)
   (let [container (.getElementById js/document "app")
         root (rdc/createRoot container)]
-    (.render root (r/as-element [app-view]))))
+    (.render root (r/as-element [app]))))
 
 ;; Application entry point
 (defn init []
   (try
-    (logging/init-logging!)
-    (re-frame/dispatch-sync [:initialize-db])
-    (log/info "Starting application initialization")
-    (re-frame/dispatch-sync [:init-lightning])
+    (init-logging!)
+    (rf/dispatch-sync [:init-db])
     (mount-root)
     (catch :default e
       (js/console.error "Failed to initialize application:" e))))

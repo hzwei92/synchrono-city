@@ -55,19 +55,18 @@
   "Converts a Clojure event map into standard Nostr JSON format"
   [event]
   (let [tags-str (if (string? (:tags event))
-                  (json/parse-string (:tags event))  ; Parse string tags into vector
-                  (:tags event))]    ; Use existing vector tags
+                   (json/parse-string (:tags event))  ; Parse string tags into vector
+                   (vec (:tags event)))]    ; Convert tags to vector explicitly
     (-> event
         (assoc :tags tags-str)  ; Replace tags with parsed version
         (update :kind #(if (number? %) % (Integer/parseInt (str %))))
         (update :created_at #(if (number? %) % (Integer/parseInt (str %))))
         ;; Convert keywords to strings while preserving values
         (as-> e
-            (reduce-kv (fn [m k v]
-                        (assoc m (name k) v))
-                      {}
-                      e)))))
-
+              (reduce-kv (fn [m k v]
+                           (assoc m (name k) v))
+                         {}
+                         e)))))
 (defn send-event
   "Sends an EVENT message to a specific client according to NIP-01"
   [conn sub-id event]
@@ -100,32 +99,123 @@
   [conn sub-id message]
   (send-message conn ["CLOSED" sub-id message]))
 
+
 (defn matches-filters?
   "Returns true if event matches NIP-01 subscription filters.
-   Implements filter matching according to NIP-01 spec:
+   Implements complete filter matching according to NIP-01 spec:
+   
+   Required filter fields:
+   - ids: list of event ids
+   - authors: list of pubkeys (event authors)
+   - kinds: list of event kinds
+   - since: earliest unix timestamp
+   - until: latest unix timestamp
+   - #e: list of event ids that are referenced in 'e' tags
+   - #p: list of pubkeys that are referenced in 'p' tags
+   
+   Filter logic:
    - Empty filters match everything
-   - Filters are combined with AND logic
-   - Each filter type (kinds, authors, etc) is combined with OR logic
+   - Multiple filters are combined with AND logic
+   - Values within each filter field use OR logic
    - Tag filters check for exact matches on tag name and value"
   [event filters]
   (if (empty? filters)
     true  ;; If no filters, match everything
-    (and (or (empty? (:kinds filters))
-         (contains? (set (:kinds filters)) (:kind event)))
-    (or (empty? (:authors filters))
-        (contains? (set (:authors filters)) (:pubkey event)))
-    (or (empty? (:since filters))
-        (>= (:created_at event) (:since filters)))
-    (or (empty? (:until filters))
-        (<= (:created_at event) (:until filters)))
-    (every? (fn [[tag-name tag-values]]
-              (or (empty? tag-values)  ;; Handle empty tag values
-                  (some #(some (fn [event-tag]
-                               (and (= (first event-tag) (name tag-name))
-                                    (= (second event-tag) %)))
-                             (:tags event))
-                        tag-values)))
-            (dissoc filters :kinds :authors :since :until)))))
+    (let [kinds-set (when (:kinds filters) (set (:kinds filters)))
+          authors-set (when (:authors filters) (set (:authors filters)))
+          ids-set (when (:ids filters) (set (:ids filters)))
+          event-tags-map (group-by first (:tags event))  ;; Pre-group tags by type for efficient lookup
+          e-tags-set (set (map second (get event-tags-map "e" [])))  ;; Get all "e" tag values
+          p-tags-set (set (map second (get event-tags-map "p" [])))  ;; Get all "p" tag values
+          e-set (when (:e filters) (set (:e filters)))  ;; #e filter values
+          p-set (when (:p filters) (set (:p filters)))] ;; #p filter values
+      (and 
+       ;; Match ids (event.id == <id>)
+       (or (empty? ids-set)
+           (contains? ids-set (:id event)))
+       
+       ;; Match authors (event.pubkey == <pubkey>)
+       (or (empty? authors-set)
+           (contains? authors-set (:pubkey event)))
+       
+       ;; Match kinds (event.kind == <kind>)
+       (or (empty? kinds-set)
+           (contains? kinds-set (:kind event)))
+       
+       ;; Match since (event.created_at >= <timestamp>)
+       (or (nil? (:since filters))
+           (>= (:created_at event) (:since filters)))
+       
+       ;; Match until (event.created_at <= <timestamp>)
+       (or (nil? (:until filters))
+           (<= (:created_at event) (:until filters)))
+       
+       ;; Match #e tag references (ANY event.tags.e == <event_id>)
+       (or (empty? e-set)
+           (some? (seq (clojure.set/intersection e-tags-set e-set))))
+       
+       ;; Match #p tag references (ANY event.tags.p == <pubkey>)
+       (or (empty? p-set)
+           (some? (seq (clojure.set/intersection p-tags-set p-set))))
+       
+       ;; Match generic tags (if any remain after handling special cases)
+       (every? (fn [[tag-name tag-values]]
+                 (or (empty? tag-values)
+                     (some #(some (fn [event-tag]
+                                  (and (= (first event-tag) (name tag-name))
+                                       (= (second event-tag) %)))
+                                (:tags event))
+                          (if (sequential? tag-values)
+                            tag-values
+                            [tag-values]))))
+               ;; Exclude all special filter fields defined by NIP-01
+               (dissoc filters :ids :authors :kinds :since :until :e :p))))))
+
+(defn handle-req
+  "Handles REQ subscription messages from clients (subscribe) according to NIP-01."
+  [conn subscription-id filters]
+  (try
+    (log/debug "Processing REQ" 
+               {:sub-id subscription-id
+                :filters filters})
+    (let [normalized-filters (-> filters
+                               ;; Ensure all list fields are vectors
+                               (cond-> 
+                                 (:kinds filters) (update :kinds vec)
+                                 (:authors filters) (update :authors vec)
+                                 (:ids filters) (update :ids vec)
+                                 (:e filters) (update :e vec)
+                                 (:p filters) (update :p vec)
+                                 ;; Convert timestamps to integers if they're strings
+                                 (:since filters) (update :since #(if (string? %) 
+                                                                  (Integer/parseInt %) 
+                                                                  %))
+                                 (:until filters) (update :until #(if (string? %) 
+                                                                  (Integer/parseInt %) 
+                                                                  %))
+                                 true (as-> f  ; Convert any remaining sets to vectors
+                                        (reduce-kv (fn [m k v]
+                                                   (assoc m k (if (set? v) (vec v) v)))
+                                                 {}
+                                                 f))))]
+      (add-subscription! conn subscription-id normalized-filters)
+      (d/chain (events/query-events normalized-filters)
+               (fn [matching-events]
+                 (log/debug "Found" (count matching-events) "events for sub" subscription-id)
+                 (doseq [event matching-events]
+                   (send-event conn subscription-id event))
+                 (send-eose conn subscription-id)
+                 {:status 200
+                  :body {:success true}})))
+    (catch Exception e
+      (log/error "REQ error" 
+                 {:sub-id subscription-id
+                  :filters filters
+                  :error (.getMessage e)})
+      (send-closed conn subscription-id (str "error: " (.getMessage e)))
+      {:status 500
+       :body {:success false
+              :error (.getMessage e)}})))
 
 ;; Message handling functions
 ;; ------------------------
@@ -172,29 +262,6 @@
                  :error "Event validation failed"})
       (send-ok conn (:id event) false "invalid: event validation failed"))))
 
-(defn handle-req
-  "Handles REQ subscription messages from clients (subscribe) according to NIP-01."
-  [conn subscription-id filters]
-  (try
-    (log/debug "Processing REQ" {:sub-id subscription-id})
-    (add-subscription! conn subscription-id filters)
-    (d/chain (events/query-events filters)
-      (fn [matching-events]
-        (log/debug "Found" (count matching-events) "events for sub" subscription-id)
-        (doseq [event matching-events]
-          (send-event conn subscription-id event))
-        (send-eose conn subscription-id)
-        {:status 200
-         :body {:success true}}))
-    (catch Exception e
-      (log/error "REQ error" 
-                 {:sub-id subscription-id
-                  :error (.getMessage e)})
-      (send-closed conn subscription-id (str "error: " (.getMessage e)))
-      {:status 500
-       :body {:success false
-              :error (.getMessage e)}})))
-
 (defn handle-close
   "Handles CLOSE messages from clients (unsubscribe)."
   [conn subscription-id]
@@ -210,26 +277,29 @@
   (try
     (let [parsed-msg (json/parse-string (if (string? msg) msg (str msg)) true)]
       (log/info "Parsed message" {:parsed parsed-msg
-                                 :type (type parsed-msg)
-                                 :vector? (vector? parsed-msg)})
+                                  :type (type parsed-msg)})
       (if-not (sequential? parsed-msg)
         (do
           (log/warn "Invalid message format - expected array/vector:" parsed-msg)
           (send-notice conn "error: message must be a JSON array"))
-        
-        (let [[msg-type & params] parsed-msg]
+
+        (let [[msg-type & params] (vec parsed-msg)]
           (case msg-type
             "EVENT" (handle-event conn (first params))
-            "REQ"   (handle-req conn (first params) (rest params))
+            "REQ"   (let [sub-id (first params)
+                          filters (second params)]  ; Take the filters map directly
+                      (handle-req conn sub-id filters))
             "CLOSE" (handle-close conn (first params))
-            
+
             (do
               (log/warn "Unknown message type:" msg-type)
               (send-notice conn (str "unknown message type: " msg-type)))))))
-              
+
     (catch Exception e
-      (log/warn "Message processing error:" (.getMessage e))
+      (log/error "Message processing error:"
+                 {:error (.getMessage e)})
       (send-notice conn (str "error: invalid message format - " (.getMessage e))))))
+
 
 (defn on-connect
   "Handler for new WebSocket connections"
