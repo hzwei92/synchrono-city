@@ -31,10 +31,10 @@
       [:span.appbar-title "synchrono.city"]]
      [:div.appbar-right
       (if @public-key
-        [:a.appbar-public-key
+        [:div.appbar-public-key
          {:on-click (when @private-key
                       #(rf/dispatch [:toggle-keypair-menu]))}
-         (str (subs @public-key 0 8) "..." (subs @public-key (- (count @public-key) 8)))]
+         (str "[p " (subs @public-key 0 8) "..." (subs @public-key (- (count @public-key) 8)) "]")]
         (if @generating-key?
           " "
           [:button.generate-keypair-button

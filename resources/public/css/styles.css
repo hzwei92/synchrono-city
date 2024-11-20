@@ -306,7 +306,7 @@ button:hover {
 
 .query {
     position: relative;
-    color: white;
+    color: darkgray;
     background: black;
     border: 1px solid dimgray;
     padding: 5px;

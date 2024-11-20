@@ -130,8 +130,10 @@
                                       finalized-event)
                    any-promise (js/Promise.any promises)]
                (.then any-promise
-                      (fn []
-                        (rf/dispatch [:nostr/subscribe-many [{:id (:id (js->clj finalized-event :keywordize-keys true))}] true]))
+                      (fn [result]
+                        (log/warn "Published event" result)
+                        (let [clj-finalized-event (js->clj finalized-event :keywordize-keys true)]
+                          (rf/dispatch [:nostr/subscribe-many [{:ids [(:id clj-finalized-event)]}] true])))
                       (fn [error]
                         (rf/dispatch [:nostr/handle-error error])))
                {:db db})))

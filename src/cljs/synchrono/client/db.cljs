@@ -5,6 +5,7 @@
   {:relays ["/"]
    :relay->metadata {}
    :new-relay ""
+
    :public-key nil
    :encrypted-private-key nil
    :private-key nil
@@ -12,15 +13,21 @@
    :keypair-menu-open? false
    :password ""
    :confirm-password ""
+
    :menu-open? false
-   :kind 1
+
+   :geolocation nil
+
    :editor/view nil
-   :query nil
+   :kind 1
+   :command nil
    :tags []
+
+   :query []
+
    :event-id->event {}
    :event-id->relays {}
-   :kind->event-ids {}
-   :geolocation nil})
+   :kind->event-ids {}})
 
 
 (rf/reg-event-fx
@@ -28,7 +35,8 @@
  (fn []
    {:db default-db
     :dispatch-n [[:load-keypair-from-local-storage]
-                 [:load-geolocation-from-local-storage]]}))
+                 [:load-geolocation-from-local-storage]
+                 [:nostr/subscribe-many [{:kinds [1] :limit 10} false]]]}))
 
 (rf/reg-event-fx
  :save-keypair-to-local-storage
@@ -67,28 +75,4 @@
                             js/JSON.parse
                             (js->clj :keywordize-keys true))]
      {:db (assoc db :geolocation geolocation)})))
-
-(rf/reg-sub
- :debug-geolocation
- (fn [db _]
-   (js/console.log "Current geolocation in db:" (clj->js (:geolocation db)))
-   (:geolocation db)))
-
-(rf/reg-event-db
- :set-geolocation
- (fn [db [_ geolocation]]
-   (js/console.log "Setting geolocation in db:" (clj->js geolocation))
-   (assoc db :geolocation geolocation)))
-
-(rf/reg-event-fx
- :save-geolocation
- (fn [{:keys [db]} [_ geolocation]]
-   {:db (assoc db :geolocation geolocation)
-    :fx [[:dispatch [:save-geolocation-to-local-storage geolocation]]]}))
-
-(rf/reg-sub
- :geolocation
- (fn [db _]
-   (js/console.log "Subscription :geolocation called, value:" (clj->js (:geolocation db)))
-   (:geolocation db)))
 

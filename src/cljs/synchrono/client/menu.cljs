@@ -1,7 +1,7 @@
 (ns synchrono.client.menu
   (:require [re-frame.core :as rf]
             [taoensso.timbre :as log]
-            [synchrono.client.map :refer [map]]))
+            [synchrono.client.map :refer [mini-map]]))
 
 (defn menu []
   (let [menu-open? (rf/subscribe [:menu-open?])
@@ -10,18 +10,19 @@
         _ (log/info "relay->metadata" @relay->metadata)
         new-relay (rf/subscribe [:new-relay])]
     [:div.menu {:class (when-not @menu-open? "closed")}
-     [map]
+     [mini-map]
      [:div.relays
-      (for [relay @relays]
-        ^{:key relay}
-        [:div.relay-item
-         [:a.relay-url
+      (doall
+       (for [relay @relays]
+         ^{:key relay}
+         [:div.relay-item
+         [:div.relay-url
           {:on-click #(rf/dispatch [:nostr/get-relay-metadata relay])}
-          relay]
+          (str "[r " relay "]")]
          (when-let [metadata (get @relay->metadata relay)]
            [:div.relay-metadata
             [:div.relay-name (:name metadata)]
-            [:div.relay-description (:description metadata)]])])]
+            [:div.relay-description (:description metadata)]])]))]
      [:div.add-relays-form
       [:input {:type "text"
                :value @new-relay

@@ -1,17 +1,18 @@
 /* Base styles */
 :root {
-    --bg-color: #090909;
+    --bg-color: #121212;
     --text-color: azure;
     --link-color: #6ea8fe;
     --border-color: #b9b9b9;
     --header-height: 60px;
+    --menu-width: 280px;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1.4;
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -41,7 +42,11 @@ input, textarea, button {
 button {
     cursor: pointer;
     background-color: transparent;
-    transition: transform 0.1s, opacity 0.1s;
+}
+
+button:hover {
+    opacity: 0.8;
+    transform: scale(0.98);
 }
 
 button:active {
@@ -53,6 +58,16 @@ button:active {
     height: 100%;
     min-width: 400px;
     overflow: hidden; /* Prevent app scrolling */
+}
+
+.copied-popup {
+    position: absolute;
+    z-index: 10000;
+    background: var(--bg-color);
+    color: dimgray;
+    padding: 5px;
+    border-radius: 2px;
+    font-size: 12px;
 }
 
 .appbar {
@@ -101,7 +116,7 @@ button:active {
     justify-content: center;
     color: darkturquoise;
     border: none;
-    font-size: 18px;
+    font-size: 14px;
     margin: auto 10px;;
     padding: 5px;
     border-radius: 4px;
@@ -111,7 +126,8 @@ button:active {
 }
 
 .appbar-public-key:hover {
-    background-color: rgba(0, 206, 209, 0.1);
+    transform: scale(0.98);
+    opacity: 0.8;
 }
 
 .appbar-public-key:active {
@@ -220,23 +236,16 @@ button:active {
 
 .outline-button {
     background: #242424;
-    border: 1px solid var(--border-color);
+    border: 1px solid darkgray;
+    color: darkgray;
     margin: 0px;
     padding: 10px;
     border-radius: 4px;
-    opacity: 0.8;
-    transition: background-color 0.2s, opacity 0.2s, transform 0.1s;
 }
 
 .outline-button:hover {
     background-color: rgba(185, 185, 185, 0.1);
-    opacity: 1;
 }
-
-.outline-button:active {
-    transform: scale(0.95);
-}
-
 
 .body {
     display: flex;
@@ -245,7 +254,7 @@ button:active {
 }
 
 .menu {
-    width: 320px;
+    width: var(--menu-width);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -258,7 +267,6 @@ button:active {
     }
 }
 
-
 .closed {
     display: none;
     @media (min-width: 700px) {
@@ -266,8 +274,25 @@ button:active {
     }
 }
 
+.map-container {
+    position: relative;
+}
+
 .map {
-    height: 320px;
+    height: var(--menu-width);
+}
+
+.coordinates {
+    position: absolute;
+    width: 200px;
+    z-index: 1000;
+    bottom: 10px;
+    left: calc(50% - 100px);
+    font-size: 14px;
+    color: dimgray;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .mapboxgl-ctrl {
@@ -281,32 +306,38 @@ button:active {
 }
 
 .relays {
-    margin: 5px;
-    margin-top: 10px;
+    margin: 10px;
+    margin-top: 12px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
+
 .relay-item {
     display: flex;
     flex-direction: column;
-    margin: 5px;
-    border: 1px solid orchid;
     border-radius: 2px;
 }
 
 .relay-url {
     color: orchid;
-    text-decoration: underline;
-    padding: 5px;
     border-radius: 4px;
     font-size: 14px;
     font-family: monospace;
+    cursor: pointer;
+}
+
+.relay-url:hover {
+    transform: scale(0.98);
+    opacity: 0.8;
+}
+
+.relay-url:active {
+    transform: scale(0.95);
 }
 
 .relay-metadata {
-    font-size: 12px;
-    padding: 5px;
-    padding-top: 0px;
+    display: none;
 }
 
 .relay-name {
@@ -335,7 +366,7 @@ button:active {
 
 .composer-body {
     background: black;
-    height: 320px;
+    height: 160px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -345,8 +376,7 @@ button:active {
     display: flex;
     flex-direction: row;
     background-color: black;
-    padding: 5px;
-    padding-top: 2px;
+    padding: 10px;
     justify-content: space-between;
 }
 
@@ -377,14 +407,25 @@ button:active {
     position: relative;
 }
 
-.query {
-    position: relative;
-    color: white;
-    background: black;
-    border: 2px solid dimgray;
-    padding: 5px;
-    border-radius: 4px;
-    margin-left: -5px;
+.lens {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.query-editor {
+    margin: 10px;
+    color: darkgray;
+}
+
+
+.selected {
+    background: var(--bg-color);
+    border-bottom: none;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .recents {
@@ -398,45 +439,128 @@ button:active {
 .recents-list {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     overflow-y: auto;
     height: 100%;
-    padding: 5px;
+    padding: 10px;
+    padding-top: 0px;
 }
 
 .event-item {
     border: 1px solid orange;
     border-radius: 2px;
     padding: 10px;
-    background: black;
+    background: #101010;
+    display: flex;
+    flex-direction: column;
 }
 
-.event-id {
+.event {
     color: orange;
     font-family: monospace;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.1s;
+}
+
+.event:hover {
+    transform: scale(0.98);
+    opacity: 0.8;
+}
+
+.event:active {
+    transform: scale(0.95);
 }
 
 .event-pubkey {
     color: darkturquoise;
     font-family: monospace;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.1s;
+}
+
+.event-pubkey:hover {
+    transform: scale(0.98);
+    opacity: 0.8;
+}
+
+.event-pubkey:active {
+    transform: scale(0.95);
 }
 
 .event-relays {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.event-relay {
     color: orchid;
     font-family: monospace;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.1s;
+}
+
+.event-relay:hover {
+    transform: scale(0.98);
+    opacity: 0.8;
+}
+
+.event-relay:active {
+    transform: scale(0.95);
 }
 
 .event-kind {
     color: darkgray;
     font-family: monospace;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.1s;
 }
+
+.event-kind:hover {
+    transform: scale(0.98);
+    opacity: 0.8;
+}
+
+.event-kind:active {
+    transform: scale(0.95);
+}
+
 .event-timestamp {
     color: darkgray;
     font-family: monospace;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+.event-timestamp:hover {
+    transform: scale(0.98);
+    opacity: 0.8;
+}
+
+.event-timestamp:active {
+    transform: scale(0.95);
+}
+
 .event-geohash {
     color: darkgray;
     font-family: monospace;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-geohash:hover {
+    transform: scale(0.98);
+    opacity: 0.8;
+}
+
+.event-geohash:active {
+    transform: scale(0.95);
 }
 
 .event-content {

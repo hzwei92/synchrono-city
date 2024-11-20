@@ -7,28 +7,43 @@
             #js {:content "paragraph+"}
 
             :paragraph
-            #js {:content "(text|tag|query)*"
+            #js {:content "(text | option | command | tag)*"
                  :parseDOM #js [#js {:tag "p"}]
                  :toDOM (fn [] #js ["p" 0])}
 
             :text
             #js {:group "inline"}
 
+            :option
+            #js {:inline true
+                 :group "inline"
+                 :content "text*"
+                 :atom true
+                 :selectable true
+                 :parseDOM #js [#js {:tag "span.option"}]
+                 :toDOM (fn [node] 
+                         #js ["span" #js {:class "option"} 0])}
+            
+            :command
+            #js {:inline true
+                 :group "inline"
+                 :content "text*"
+                 :atom true
+                 :selectable true
+                 :parseDOM #js [#js {:tag "span.command"}]
+                 :toDOM (fn [node]
+                         #js ["span" #js {:class "command"} 0])}
+            
             :tag
             #js {:inline true
                  :group "inline"
                  :content "text*"
                  :atom true
+                 :selectable true
                  :parseDOM #js [#js {:tag "span.tag"}]
-                 :toDOM (fn [] #js ["span" #js {:class "tag"} 0])}
-
-            :query
-            #js {:inline true
-                 :group "inline"
-                 :content "text*"
-                 :atom false
-                 :parseDOM #js [#js {:tag "span.query"}]
-                 :toDOM (fn [] #js ["span" #js {:class "query"} 0])}}
+                 :toDOM (fn [node]
+                         #js ["span" #js {:class "tag"} 0])}
+            }
 
        :marks
        #js {:bold
@@ -43,7 +58,7 @@
             #js {:attrs #js {:href {}}
                  :inclusive false
                  :parseDOM #js [#js {:tag "a"
-                                     :getAttrs (fn [dom] #js {:href (.getAttribute dom "href")})}]
+                                    :getAttrs (fn [dom] #js {:href (.getAttribute dom "href")})}]
                  :toDOM (fn [node] #js ["a" #js {:href (.-href (.-attrs node))} 0])}}})
 
 (def schema (Schema. schema-spec))

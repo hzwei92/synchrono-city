@@ -93,7 +93,7 @@
   []
   (try
     (log/info "Initializing database")
-    #_(init-db!)
+    (init-db!)
     
     (let [port (Integer/parseInt (or (System/getenv "PORT") "3000"))]
       (start-server! port))

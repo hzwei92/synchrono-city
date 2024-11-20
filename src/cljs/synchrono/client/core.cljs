@@ -8,8 +8,7 @@
             [synchrono.client.appbar :refer [appbar]]
             [synchrono.client.menu :refer [menu]]
             [synchrono.client.composer :refer [composer]]
-            [synchrono.client.surveyor :refer [surveyor]]
-            [synchrono.client.recents :refer [recents]]
+            [synchrono.client.lens :refer [lens]]
             [synchrono.client.db]
             [synchrono.client.logging :refer [init-logging!]]
             [taoensso.timbre :as log]))
@@ -22,7 +21,7 @@
     [menu]
     [:div.main
      [composer]
-     [recents]]]])
+     [lens]]]])
 
 ;; Mounts the root React component to the DOM
 (defn mount-root []
