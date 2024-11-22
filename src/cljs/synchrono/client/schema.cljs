@@ -7,42 +7,108 @@
             #js {:content "paragraph+"}
 
             :paragraph
-            #js {:content "(text | option | command | tag)*"
+            #js {:content "(text | action | event | pubkey | relay | timestamp | geohash)*"
                  :parseDOM #js [#js {:tag "p"}]
                  :toDOM (fn [] #js ["p" 0])}
 
             :text
             #js {:group "inline"}
 
-            :option
+            :action
             #js {:inline true
                  :group "inline"
                  :content "text*"
                  :atom true
                  :selectable true
-                 :parseDOM #js [#js {:tag "span.option"}]
+                 :attrs #js {:nodeId {}}
+                 :parseDOM #js [#js {:tag "span.action"
+                                    :getAttrs (fn [dom]
+                                              #js {:nodeId (.getAttribute dom "data-node-id")})}]
                  :toDOM (fn [node] 
-                         #js ["span" #js {:class "option"} 0])}
+                         #js ["span" #js {:class "action"
+                                         :data-node-id (.. node -attrs -nodeId)} 0])}
             
-            :command
+            :event
             #js {:inline true
                  :group "inline"
                  :content "text*"
                  :atom true
                  :selectable true
-                 :parseDOM #js [#js {:tag "span.command"}]
+                 :attrs #js {:eventId {:default nil}
+                             :nodeId {:default nil}
+                             :expanded {:default false}}
+                 :parseDOM #js [#js {:tag "span.event"
+                                    :getAttrs (fn [dom]
+                                              #js {:eventId (.getAttribute dom "data-event-id")
+                                                  :nodeId (.getAttribute dom "data-node-id")
+                                                  :expanded (= "true" (.getAttribute dom "data-expanded"))})}]
                  :toDOM (fn [node]
-                         #js ["span" #js {:class "command"} 0])}
+                         #js ["span" #js {:class "event"
+                                          :data-event-id (.. node -attrs -eventId)
+                                          :data-node-id (.. node -attrs -nodeId)
+                                          :data-expanded (.. node -attrs -expanded)} 0])}
             
-            :tag
+            :pubkey
             #js {:inline true
                  :group "inline"
                  :content "text*"
                  :atom true
                  :selectable true
-                 :parseDOM #js [#js {:tag "span.tag"}]
+                 :attrs #js {:pubkey {:default nil}
+                            :nodeId {:default nil}
+                            :expanded {:default false}}
+                 :parseDOM #js [#js {:tag "span.pubkey"
+                                    :getAttrs (fn [dom]
+                                              #js {:pubkey (.getAttribute dom "data-pubkey")
+                                                  :nodeId (.getAttribute dom "data-node-id")
+                                                  :expanded (= "true" (.getAttribute dom "data-expanded"))})}]
                  :toDOM (fn [node]
-                         #js ["span" #js {:class "tag"} 0])}
+                         #js ["span" #js {:class "pubkey"
+                                         :data-pubkey (.. node -attrs -pubkey)
+                                         :data-node-id (.. node -attrs -nodeId)
+                                         :data-expanded (.. node -attrs -expanded)} 0])}
+
+            :relay
+            #js {:inline true
+                 :group "inline"
+                 :content "text*"
+                 :atom true
+                 :selectable true
+                 :attrs #js {:nodeId {}}
+                 :parseDOM #js [#js {:tag "span.relay"
+                                    :getAttrs (fn [dom]
+                                              #js {:nodeId (.getAttribute dom "data-node-id")})}]
+                 :toDOM (fn [node] 
+                         #js ["span" #js {:class "relay"
+                                          :data-node-id (.. node -attrs -nodeId)} 0])}
+            
+            :timestamp
+            #js {:inline true
+                 :group "inline"
+                 :content "text*"
+                 :atom true
+                 :selectable true
+                 :attrs #js {:nodeId {}}
+                 :parseDOM #js [#js {:tag "span.timestamp"
+                                    :getAttrs (fn [dom]
+                                              #js {:nodeId (.getAttribute dom "data-node-id")})}]
+                 :toDOM (fn [node]
+                         #js ["span" #js {:class "timestamp"
+                                         :data-node-id (.. node -attrs -nodeId)} 0])}
+            
+            :geohash
+            #js {:inline true
+                 :group "inline"
+                 :content "text*"
+                 :atom true
+                 :selectable true
+                 :attrs #js {:nodeId {}}
+                 :parseDOM #js [#js {:tag "span.geohash"
+                                    :getAttrs (fn [dom]
+                                              #js {:nodeId (.getAttribute dom "data-node-id")})}]
+                 :toDOM (fn [node]
+                         #js ["span" #js {:class "geohash"
+                                         :data-node-id (.. node -attrs -nodeId)} 0])}
             }
 
        :marks

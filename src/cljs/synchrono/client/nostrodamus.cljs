@@ -33,28 +33,29 @@
            subscriptions (atom {})] ; Store subscriptions mapped to relay URLs
        ;; Iterate over relay URLs and subscribe to each one
        (doseq [url normalized-urls]
-         (let [sub (.subscribeMany relay-pool
-                               (clj->js [url])
-                               (clj->js query)
-                               #js {:onevent
-                                    (fn [event]
+         (let [_ (log/info "Subscribing to relay" url)
+               sub (.subscribeMany relay-pool
+                                   (clj->js [url])
+                                   (clj->js query)
+                                   #js {:onevent
+                                        (fn [event]
                                       ;; Dispatch event with relay metadata
-                                      (rf/dispatch [:nostr/handle-event {:relay url
-                                                                         :event (js->clj event :keywordize-keys true)}]))
-                                    :onok
-                                    (fn [event-id success? message]
-                                      (rf/dispatch [:nostr/handle-ok event-id success? message]))
-                                    :oneose
-                                    (fn []
-                                      (when close-on-eose?
-                                        (.close (get @subscriptions url)))
-                                      (rf/dispatch [:nostr/handle-eose query close-on-eose?]))
-                                    :onnotice
-                                    (fn [message]
-                                      (rf/dispatch [:nostr/handle-notice message]))
-                                    :onerror
-                                    (fn [error]
-                                      (rf/dispatch [:nostr/handle-error {:relay url :error error}]))})]
+                                          (rf/dispatch [:nostr/handle-event {:relay url
+                                                                             :event (js->clj event :keywordize-keys true)}]))
+                                        :onok
+                                        (fn [event-id success? message]
+                                          (rf/dispatch [:nostr/handle-ok event-id success? message]))
+                                        :oneose
+                                        (fn []
+                                          (when close-on-eose?
+                                            (.close (get @subscriptions url)))
+                                          (rf/dispatch [:nostr/handle-eose query close-on-eose?]))
+                                        :onnotice
+                                        (fn [message]
+                                          (rf/dispatch [:nostr/handle-notice message]))
+                                        :onerror
+                                        (fn [error]
+                                          (rf/dispatch [:nostr/handle-error {:relay url :error error}]))})]
            ;; Store the subscription for potential closure
            (swap! subscriptions assoc url sub)))
        {:db db})
@@ -73,6 +74,8 @@
      (log/info "Received Event"
                {:event-id event-id
                 :event-kind event-kind
+                :event-content (:content event)
+                :event-tags (:tags event)
                 :relay relay})
      (-> db
          (assoc-in [:event-id->event event-id] event)
@@ -112,6 +115,12 @@
    (let [public-key (:public-key db)
          private-key (:private-key db)
          relay-urls (:relays db)]
+     (log/info "Attempting to publish nostr event:" 
+               {:kind kind 
+                :content content 
+                :tags tags
+                :has-private-key? (boolean private-key)
+                :relay-count (count relay-urls)})
      (if-not private-key
        (do
          (log/error "No private key")
@@ -119,26 +128,35 @@
        (try
          (let [normalized-urls (mapv normalize-relay-url relay-urls)
                event (create-event public-key kind content tags)
+               _ (log/debug "Created event:" (js->clj event))
                finalized-event (finalizeEvent event (hexToBytes private-key))
+               _ (log/debug "Finalized event:" (js->clj finalized-event))
                valid? (verifyEvent finalized-event)]
            (if-not valid?
              (do
                (log/error "Event verification failed")
                {:db db})
              (let [promises (.publish relay-pool
-                                      (clj->js normalized-urls)
-                                      finalized-event)
-                   any-promise (js/Promise.any promises)]
-               (.then any-promise
-                      (fn [result]
-                        (log/warn "Published event" result)
-                        (let [clj-finalized-event (js->clj finalized-event :keywordize-keys true)]
-                          (rf/dispatch [:nostr/subscribe-many [{:ids [(:id clj-finalized-event)]}] true])))
-                      (fn [error]
-                        (rf/dispatch [:nostr/handle-error error])))
+                                    (clj->js normalized-urls)
+                                    finalized-event)]
+               (log/debug "Publishing to relays:" normalized-urls)
+               (.then (js/Promise.any promises)
+                     (fn [result]
+                       (log/info "Successfully published event:" result)
+                       (let [clj-finalized-event (js->clj finalized-event :keywordize-keys true)]
+                         (rf/dispatch [:nostr/subscribe-many [{:ids [(:id clj-finalized-event)]}] true])))
+                     (fn [error]
+                       (log/error "Failed to publish to any relay:" 
+                                {:error error
+                                 :message (.-message error)
+                                 :stack (.-stack error)})
+                       (rf/dispatch [:nostr/handle-error error])))
                {:db db})))
          (catch :default e
-           (log/error "Failed to publish event" e)
+           (log/error "Failed to publish event" 
+                     {:error e
+                      :message (ex-message e)
+                      :stack (.-stack e)})
            {:db db}))))))
 
 (rf/reg-event-fx

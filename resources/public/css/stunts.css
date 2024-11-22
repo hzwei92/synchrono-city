@@ -380,25 +380,10 @@ button:active {
     justify-content: space-between;
 }
 
-.kind {
-    color: darkgray;
-    font-size: 14px;
-    padding: 5px;
-    font-family: monospace;
-}
-
-.geolocation {
-    color: darkgray;
-    font-size: 14px;
-    padding: 5px;
-    font-family: monospace;
-}
-
-.timestamp {
-    color: darkgray;
-    font-size: 14px;
-    padding: 5px;
-    font-family: monospace;
+.composer-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .editor {
@@ -455,6 +440,31 @@ button:active {
     flex-direction: column;
 }
 
+.event-content {
+    margin-top: 5px;
+    border-top: 1px solid darkgray;
+    padding-top: 5px;
+    white-space: pre-wrap;
+    color: white;
+}
+
+/* Add these new styles for the special nodes */
+.action {
+    color: white;
+    font-family: monospace;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.1s;
+}
+
+.action:hover {
+    transform: scale(0.98);
+    opacity: 0.8;
+}
+
+.action:active {
+    transform: scale(0.95);
+}
+
 .event {
     color: orange;
     font-family: monospace;
@@ -471,99 +481,79 @@ button:active {
     transform: scale(0.95);
 }
 
-.event-pubkey {
+.pubkey {
     color: darkturquoise;
     font-family: monospace;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.1s;
 }
 
-.event-pubkey:hover {
+.pubkey:hover {
     transform: scale(0.98);
     opacity: 0.8;
 }
 
-.event-pubkey:active {
+.pubkey:active {
     transform: scale(0.95);
 }
 
-.event-relays {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
-
-.event-relay {
+.relay {
     color: orchid;
     font-family: monospace;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.1s;
 }
 
-.event-relay:hover {
+.relay:hover {
     transform: scale(0.98);
     opacity: 0.8;
 }
 
-.event-relay:active {
+.relay:active {
     transform: scale(0.95);
 }
 
-.event-kind {
+.timestamp {
     color: darkgray;
     font-family: monospace;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.1s;
 }
 
-.event-kind:hover {
+.timestamp:hover {
     transform: scale(0.98);
     opacity: 0.8;
 }
 
-.event-kind:active {
+.timestamp:active {
     transform: scale(0.95);
 }
 
-.event-timestamp {
+.geohash {
     color: darkgray;
     font-family: monospace;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.1s;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
-.event-timestamp:hover {
+.geohash:hover {
     transform: scale(0.98);
     opacity: 0.8;
 }
 
-.event-timestamp:active {
+.geohash:active {
     transform: scale(0.95);
 }
 
-.event-geohash {
-    color: darkgray;
-    font-family: monospace;
+/* Make these elements fit their content */
+.event,
+.pubkey,
+.relay,
+.timestamp,
+.geohash {
+    width: fit-content;  /* Instead of stretching full width */
+    display: inline-block;
+    border-radius: 4px;
     cursor: pointer;
-    transition: transform 0.1s, opacity 0.1s;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.event-geohash:hover {
-    transform: scale(0.98);
-    opacity: 0.8;
-}
-
-.event-geohash:active {
-    transform: scale(0.95);
-}
-
-.event-content {
-    white-space: pre-wrap;
-    color: white;
+    margin: 2px;
 }

@@ -1,1 +1,0 @@
-{"version":3,"sources":["synchrono/client/panel.cljs"],"mappings":";AAGA,+BAAA,/BAAMA;AAAN,AAAA,0FAAA","names":["synchrono.client.panel/panel"],"sourcesContent":["(ns synchrono.client.panel\n  (:require [reagent.core :as r]))\n\n(defn panel []\n    [:div.body])\n"]}
