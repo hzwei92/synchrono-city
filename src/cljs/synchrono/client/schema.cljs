@@ -36,17 +36,20 @@
                  :selectable true
                  :attrs #js {:eventId {:default nil}
                              :nodeId {:default nil}
-                             :expanded {:default false}}
+                             :expanded {:default false}
+                             :preposition {:default "reply"}}
                  :parseDOM #js [#js {:tag "span.event"
                                     :getAttrs (fn [dom]
                                               #js {:eventId (.getAttribute dom "data-event-id")
                                                   :nodeId (.getAttribute dom "data-node-id")
-                                                  :expanded (= "true" (.getAttribute dom "data-expanded"))})}]
+                                                  :expanded (= "true" (.getAttribute dom "data-expanded"))
+                                                  :preposition (or (.getAttribute dom "data-preposition") "reply")})}]
                  :toDOM (fn [node]
                          #js ["span" #js {:class "event"
                                           :data-event-id (.. node -attrs -eventId)
                                           :data-node-id (.. node -attrs -nodeId)
-                                          :data-expanded (.. node -attrs -expanded)} 0])}
+                                          :data-expanded (.. node -attrs -expanded)
+                                          :data-preposition (.. node -attrs -preposition)} 0])}
             
             :pubkey
             #js {:inline true
@@ -74,13 +77,16 @@
                  :content "text*"
                  :atom true
                  :selectable true
-                 :attrs #js {:nodeId {}}
+                 :attrs #js {:nodeId {}
+                            :relay {:default nil}}
                  :parseDOM #js [#js {:tag "span.relay"
                                     :getAttrs (fn [dom]
-                                              #js {:nodeId (.getAttribute dom "data-node-id")})}]
+                                              #js {:nodeId (.getAttribute dom "data-node-id")
+                                                  :relay (.getAttribute dom "data-relay")})}]
                  :toDOM (fn [node] 
                          #js ["span" #js {:class "relay"
-                                          :data-node-id (.. node -attrs -nodeId)} 0])}
+                                         :data-node-id (.. node -attrs -nodeId)
+                                         :data-relay (.. node -attrs -relay)} 0])}
             
             :timestamp
             #js {:inline true
@@ -88,13 +94,16 @@
                  :content "text*"
                  :atom true
                  :selectable true
-                 :attrs #js {:nodeId {}}
+                 :attrs #js {:nodeId {}
+                            :timestamp {:default nil}}
                  :parseDOM #js [#js {:tag "span.timestamp"
                                     :getAttrs (fn [dom]
-                                              #js {:nodeId (.getAttribute dom "data-node-id")})}]
+                                              #js {:nodeId (.getAttribute dom "data-node-id")
+                                                  :timestamp (.getAttribute dom "data-timestamp")})}]
                  :toDOM (fn [node]
                          #js ["span" #js {:class "timestamp"
-                                         :data-node-id (.. node -attrs -nodeId)} 0])}
+                                         :data-node-id (.. node -attrs -nodeId)
+                                         :data-timestamp (.. node -attrs -timestamp)} 0])}
             
             :geohash
             #js {:inline true
@@ -102,13 +111,16 @@
                  :content "text*"
                  :atom true
                  :selectable true
-                 :attrs #js {:nodeId {}}
+                 :attrs #js {:nodeId {}
+                            :geohash {:default nil}}
                  :parseDOM #js [#js {:tag "span.geohash"
                                     :getAttrs (fn [dom]
-                                              #js {:nodeId (.getAttribute dom "data-node-id")})}]
+                                              #js {:nodeId (.getAttribute dom "data-node-id")
+                                                  :geohash (.getAttribute dom "data-geohash")})}]
                  :toDOM (fn [node]
                          #js ["span" #js {:class "geohash"
-                                         :data-node-id (.. node -attrs -nodeId)} 0])}
+                                         :data-node-id (.. node -attrs -nodeId)
+                                         :data-geohash (.. node -attrs -geohash)} 0])}
             }
 
        :marks

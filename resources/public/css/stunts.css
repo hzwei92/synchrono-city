@@ -1,6 +1,6 @@
 /* Base styles */
 :root {
-    --bg-color: #121212;
+    --bg-color: #080808;
     --text-color: azure;
     --link-color: #6ea8fe;
     --border-color: #b9b9b9;
@@ -12,7 +12,8 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.4;
+    line-height: 1.5;
+    font-size: 14px;
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -46,11 +47,11 @@ button {
 
 button:hover {
     opacity: 0.8;
-    transform: scale(0.98);
+    transform: scale(0.95);
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 #app {
@@ -98,7 +99,7 @@ button:active {
 }
 
 .appbar-button:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .appbar-title {
@@ -116,7 +117,6 @@ button:active {
     justify-content: center;
     color: darkturquoise;
     border: none;
-    font-size: 14px;
     margin: auto 10px;;
     padding: 5px;
     border-radius: 4px;
@@ -126,12 +126,12 @@ button:active {
 }
 
 .appbar-public-key:hover {
-    transform: scale(0.98);
+    transform: scale(0.95);
     opacity: 0.8;
 }
 
 .appbar-public-key:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .generate-keypair-button {
@@ -149,7 +149,7 @@ button:active {
 }
 
 .generate-keypair-button:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .login {
@@ -194,7 +194,7 @@ button:active {
 }
 
 .public-key-button:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .nostr-event-button {
@@ -212,7 +212,7 @@ button:active {
 }
 
 .nostr-event-button:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .nostr-relay-button {
@@ -230,7 +230,7 @@ button:active {
 }
 
 .nostr-relay-button:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 
@@ -258,7 +258,6 @@ button:active {
     height: 100%;
     display: flex;
     flex-direction: column;
-    font-size: 18px;
     z-index: 100;
     background-color: #191919;
     position: fixed;
@@ -288,7 +287,6 @@ button:active {
     z-index: 1000;
     bottom: 10px;
     left: calc(50% - 100px);
-    font-size: 14px;
     color: dimgray;
     display: none;
     flex-direction: row;
@@ -322,18 +320,17 @@ button:active {
 .relay-url {
     color: orchid;
     border-radius: 4px;
-    font-size: 14px;
     font-family: monospace;
     cursor: pointer;
 }
 
 .relay-url:hover {
-    transform: scale(0.98);
+    transform: scale(0.95);
     opacity: 0.8;
 }
 
 .relay-url:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .relay-metadata {
@@ -366,7 +363,6 @@ button:active {
 
 .composer-body {
     background: black;
-    height: 160px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -432,7 +428,7 @@ button:active {
 }
 
 .event-item {
-    border: 1px solid orange;
+    border: 1px solid darkgray;
     border-radius: 2px;
     padding: 10px;
     background: #101010;
@@ -440,11 +436,21 @@ button:active {
     flex-direction: column;
 }
 
+.event-item.selected {
+    background-color: #292929;
+}
+
+.event-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
 .event-content {
-    margin-top: 5px;
-    border-top: 1px solid darkgray;
     padding-top: 5px;
     white-space: pre-wrap;
+    word-wrap: break-word;
     color: white;
 }
 
@@ -457,12 +463,12 @@ button:active {
 }
 
 .action:hover {
-    transform: scale(0.98);
+    transform: scale(0.95);
     opacity: 0.8;
 }
 
 .action:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .event {
@@ -470,15 +476,16 @@ button:active {
     font-family: monospace;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.1s;
+    white-space: nowrap;
 }
 
 .event:hover {
-    transform: scale(0.98);
+    transform: scale(0.95);
     opacity: 0.8;
 }
 
 .event:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .pubkey {
@@ -486,15 +493,16 @@ button:active {
     font-family: monospace;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.1s;
+    white-space: nowrap;
 }
 
 .pubkey:hover {
-    transform: scale(0.98);
+    transform: scale(0.95);
     opacity: 0.8;
 }
 
 .pubkey:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .relay {
@@ -502,15 +510,16 @@ button:active {
     font-family: monospace;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.1s;
+    white-space: nowrap;
 }
 
 .relay:hover {
-    transform: scale(0.98);
+    transform: scale(0.95);
     opacity: 0.8;
 }
 
 .relay:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .timestamp {
@@ -518,15 +527,16 @@ button:active {
     font-family: monospace;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.1s;
+    white-space: nowrap;
 }
 
 .timestamp:hover {
-    transform: scale(0.98);
+    transform: scale(0.95);
     opacity: 0.8;
 }
 
 .timestamp:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .geohash {
@@ -534,15 +544,16 @@ button:active {
     font-family: monospace;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.1s;
+    white-space: nowrap;
 }
 
 .geohash:hover {
-    transform: scale(0.98);
+    transform: scale(0.95);
     opacity: 0.8;
 }
 
 .geohash:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 /* Make these elements fit their content */
@@ -556,4 +567,21 @@ button:active {
     border-radius: 4px;
     cursor: pointer;
     margin: 2px;
+}
+
+.expanded-tag {
+    margin: 10px 0px;
+}
+
+.composer-resize-handle {
+    width: 100%;
+    height: 2px;
+    background: var(--bg-color);
+    cursor: ns-resize;
+    transform: translateY(-3px);
+    z-index: 100000;
+}
+
+.composer-resize-handle:hover {
+    background: darkgray;
 }

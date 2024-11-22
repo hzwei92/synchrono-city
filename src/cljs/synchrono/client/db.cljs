@@ -19,9 +19,10 @@
 
    :geolocation nil
 
+   :composer/height 120
    :editor/view nil
    :editor/re-render nil
-   
+
    :kind 1
    :command nil
    :tags []
@@ -76,16 +77,3 @@
                             js/JSON.parse
                             (js->clj :keywordize-keys true))]
      {:db (assoc db :geolocation geolocation)})))
-
-;; Add events for managing node display states
-(rf/reg-event-db
- :set-node-display-state
- (fn [db [_ node-id state]]
-   (assoc-in db [:node-id->display-state node-id] state)))
-
-;; Add subscription for getting node display state
-(rf/reg-sub
- :node-display-state
- (fn [db [_ node-id]]
-   (get-in db [:node-id->display-state node-id] false)))
-

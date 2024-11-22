@@ -2,7 +2,9 @@
   (:require ["prosemirror-state" :as pm-state]
             [taoensso.timbre :as log]
             [clojure.string :as str]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [synchrono.client.popup :refer [show-copied-popup]]
+            [synchrono.client.click :refer [handle-click]]))
 
 ;; Move shorten-id from nodeview.cljs
 (defn- shorten-id [id]
@@ -15,9 +17,10 @@
     (case node-type
       "event" (let [event-id (.. node -attrs -eventId)
                     expanded? (.. node -attrs -expanded)
+                    preposition (.. node -attrs -preposition)
                     display-text (if expanded?
-                                   (str "[e " event-id "]")
-                                   (str "[e " (shorten-id event-id) "]"))]
+                                 (str "[e " event-id " " preposition "]")
+                                 (str "[e " (shorten-id event-id) " " preposition "]"))]
                (set! (.-textContent span) display-text))
       
       "pubkey" (let [pubkey (.. node -attrs -pubkey)
@@ -31,80 +34,99 @@
     (catch :default e
       (log/error "Error in update-display:" e))))
 
-(defn- handle-click [e node node-type view get-pos]
-  (.preventDefault e)
-  (if (= (.-detail e) 2)  ; Check if it's a double-click
-    ;; Handle double-click for copying
-    (case node-type
-      "event" (let [text (str "[e " (.. node -attrs -eventId) "]")]
-                (.. js/navigator -clipboard (writeText text))
-                (show-copied-popup e))
-      "pubkey" (let [text (str "[p " (.. node -attrs -pubkey) "]")]
-                 (.. js/navigator -clipboard (writeText text))
-                 (show-copied-popup e))
-      "action" (rf/dispatch [:action-clicked (.-textContent node)])
-      "relay" (let [text (.-textContent node)]
-                (.. js/navigator -clipboard (writeText text))
-                (show-copied-popup e))
-      "timestamp" (let [text (.-textContent node)]
-                   (.. js/navigator -clipboard (writeText text))
-                   (show-copied-popup e))
-      "geohash" (let [text (.-textContent node)]
-                  (.. js/navigator -clipboard (writeText text))
-                  (show-copied-popup e))
-      nil)
-    
-    ;; Handle single-click for expansion
-    (case node-type
-      "event" 
-      (do
-        (.stopPropagation e)
-        (when (and view (.-state view))
-          (let [tr (.. view -state -tr)
-                pos (get-pos)]
-            (when pos
-              (let [current-expanded (.. node -attrs -expanded)
-                    new-expanded (not current-expanded)
-                    new-attrs #js {:eventId (.. node -attrs -eventId)
-                                 :nodeId (.. node -attrs -nodeId)
-                                 :expanded new-expanded}]
-                (.setNodeMarkup tr pos (.-type node) new-attrs)
-                (.dispatch view tr)))))
-        (rf/dispatch [:event-clicked (.. node -attrs -eventId)]))
+(defn- handle-event-single-click [node e]
+  (let [text (str "[e " (.. node -attrs -eventId) "]")]
+    (.. js/navigator -clipboard (writeText text))
+    (show-copied-popup e)))
 
-      "pubkey"
-      (do
-        (.stopPropagation e)
-        (when (and view (.-state view))
-          (let [tr (.. view -state -tr)
-                pos (get-pos)]
-            (when pos
-              (let [current-expanded (.. node -attrs -expanded)
-                    new-expanded (not current-expanded)
-                    new-attrs #js {:pubkey (.. node -attrs -pubkey)
-                                 :nodeId (.. node -attrs -nodeId)
-                                 :expanded new-expanded}]
-                (.setNodeMarkup tr pos (.-type node) new-attrs)
-                (.dispatch view tr))))))
-      nil)))
+(defn- handle-event-double-click [node e view get-pos]
+  (.stopPropagation e)
+  (when (and view (.-state view))
+    (let [tr (.. view -state -tr)
+          pos (get-pos)]
+      (when pos
+        (let [current-preposition (.. node -attrs -preposition)
+              new-preposition (if (= current-preposition "reply") "root" "reply")
+              new-attrs #js {:eventId (.. node -attrs -eventId)
+                           :nodeId (.. node -attrs -nodeId)
+                           :expanded (.. node -attrs -expanded)
+                           :preposition new-preposition}]
+          (.setNodeMarkup tr pos (.-type node) new-attrs)
+          (.dispatch view tr)))))
+  (rf/dispatch [:event-clicked (.. node -attrs -eventId)]))
+
+(defn- handle-pubkey-single-click [node e]
+  (let [text (str "[p " (.. node -attrs -pubkey) "]")]
+    (.. js/navigator -clipboard (writeText text))
+    (show-copied-popup e)))
+
+(defn- handle-pubkey-double-click [_node _e _view _get-pos]
+  nil) ; No-op for pubkey double-click
+
+(defn- handle-relay-single-click [node e]
+  (let [text (str "[r " (.. node -attrs -relay) "]")]
+    (.. js/navigator -clipboard (writeText text))
+    (show-copied-popup e)))
+
+(defn- handle-timestamp-single-click [node e]
+  (let [text (str "[t " (.. node -attrs -timestamp) "]")]
+    (.. js/navigator -clipboard (writeText text))
+    (show-copied-popup e)))
+
+(defn- handle-geohash-single-click [node e]
+  (let [text (str "[s " (.. node -attrs -geohash) "]")]
+    (.. js/navigator -clipboard (writeText text))
+    (show-copied-popup e)))
+
+(defn- handle-action-single-click [node _e]
+  (rf/dispatch [:action-clicked (.-textContent node)]))
+
+(defn- handle-other-double-click [_node _e _view _get-pos]
+  nil)
 
 (defn- create-node-view [node-type]
   (fn [node view get-pos]
     (let [span (.createElement js/document "span")
           current-node (atom node)
           handler (fn [e]
-                    (let [editor-view view
-                          node @current-node]
-                      (if-not (and editor-view (.-state editor-view))
-                        (log/error "Editor view is undefined in click handler")
-                        (handle-click e node node-type editor-view get-pos))))]
+                   (.preventDefault e)
+                   (let [editor-view view
+                         node @current-node]
+                     (case node-type
+                       "event" (handle-click 
+                               (.. node -attrs -nodeId)
+                               #(handle-event-single-click node %)
+                               #(handle-event-double-click node % editor-view get-pos)
+                               e)
+                       "pubkey" (handle-click
+                                (.. node -attrs -nodeId)
+                                #(handle-pubkey-single-click node %)
+                                #(handle-pubkey-double-click node % editor-view get-pos)
+                                e)
+                       "relay" (handle-click
+                               (.. node -attrs -nodeId)
+                               #(handle-relay-single-click node %)
+                               #(handle-other-double-click node % editor-view get-pos)
+                               e)
+                       "timestamp" (handle-click
+                                  (.. node -attrs -nodeId)
+                                  #(handle-timestamp-single-click node %)
+                                  #(handle-other-double-click node % editor-view get-pos)
+                                  e)
+                       "geohash" (handle-click
+                                 (.. node -attrs -nodeId)
+                                 #(handle-geohash-single-click node %)
+                                 #(handle-other-double-click node % editor-view get-pos)
+                                 e)
+                       "action" (handle-click
+                                (.. node -attrs -nodeId)
+                                #(handle-action-single-click node %)
+                                #(handle-other-double-click node % editor-view get-pos)
+                                e))))]
       
       (.setAttribute span "class" node-type)
-      
-      ;; Initial display
       (update-display span node node-type)
       
-      ;; Set title attribute for hover
       (when (contains? #{"event" "pubkey"} node-type)
         (let [full-val (case node-type
                         "event" (.. node -attrs -eventId)
@@ -143,6 +165,8 @@
                        "event" (str/replace text #"^\[e |\]$" "")
                        "pubkey" (str/replace text #"^\[p |\]$" "")
                        "relay" (str/replace text #"^\[r |\]$" "")
+                       "timestamp" (str/replace text #"^\[t |\]$" "")
+                       "geohash" (str/replace text #"^\[s |\]$" "")
                        text)
           text-node (create-text-node text schema)
           schema-node-type (case (:type match)
@@ -160,11 +184,17 @@
               attrs (case (:type match)
                      "event" #js {:eventId clean-text
                                   :nodeId node-id
-                                  :expanded false}
+                                  :expanded false
+                                  :preposition "reply"}
                      "pubkey" #js {:pubkey clean-text
                                    :nodeId node-id
                                    :expanded false}
-                     "relay" #js {:nodeId node-id}
+                     "relay" #js {:nodeId node-id
+                                  :relay clean-text}
+                     "timestamp" #js {:nodeId node-id
+                                      :timestamp clean-text}
+                     "geohash" #js {:nodeId node-id
+                                    :geohash clean-text}
                      #js {:nodeId node-id})
               node (.create schema-node-type attrs #js [text-node])]
           (log/debug "Created node with attrs:" (js->clj attrs))
